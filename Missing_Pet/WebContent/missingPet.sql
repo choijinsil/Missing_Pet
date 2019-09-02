@@ -97,8 +97,6 @@ select * from user_info;
 select * from missing_info;
 select * from wit_info;
 
-
-	
 	
 	
 	
