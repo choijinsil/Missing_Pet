@@ -1,6 +1,7 @@
 package beans.missing.dao;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import java.util.Map;
@@ -86,11 +87,11 @@ public class UserDAO {
 	}
 	
 	//main.jsp에 실종 동물 리스트 select
-	public List<PetVO> pet_list () {
+	public List<PetVO> pet_list (int page) {
 			
 			List<PetVO> list = null;
 			try {
-				list = smc.queryForList("user.pet_list");
+				list = smc.queryForList("user.pet_list",6*page-6,6);
 				return list;
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -108,5 +109,30 @@ public class UserDAO {
 		}
 		return null;
 	}
-
+	
+	//main페이지 페이징
+	public List<PetVO> select_page(Map<String,Integer> map) {
+		
+		List<PetVO> list = new ArrayList<>();
+		try {
+			list = (ArrayList) smc.queryForList("user.select_page",map);//map(start:1,end:10) mpa(11,20) ...
+			return list;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	//main페이지 페이징
+	public Integer total_page() {
+		
+		int totalPage = 0;
+		try {
+			totalPage = (Integer) smc.queryForObject("user.total_page");
+			return totalPage;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return totalPage;
+	}
 }

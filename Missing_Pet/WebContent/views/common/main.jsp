@@ -61,6 +61,12 @@
 		.left .context{ font-size: 12px; color: #777; margin: 20px 0;}
 		.footer .right a{color: #777; font-size: 12px; }
 		
+		.p1{
+			text-align: center;
+		}
+		.p2{
+			text-align: center;
+		}
 		
 		@media(max-width:1000px){.wrap{width:auto;}
 								.dropmenu{left:0; margin:0;}
@@ -143,7 +149,28 @@
 			</div>
 		</c:forEach>
 	</div>
-
+	
+	<br>
+	<p class="p2">
+		<c:if test="${page == 1}">
+			이전
+		</c:if>
+		<c:if test="${page > 1}">
+			<a href="/main?action=main&page=${page-1}" style="text-decoration: none; color: black;">이전</a>
+		</c:if>
+		
+			<c:forEach begin="1" end="${totalPage}" var="i">
+				<a href="/main?action=main&page=${i}" style="text-decoration: none; color: black;"> [${i}] </a>
+			</c:forEach>
+			
+		<c:if test="${page != totalPage}">
+			<a href="/main?action=main&page=${page+1}" style="text-decoration: none; color: black;">다음</a>
+		</c:if>
+		<c:if test="${page == totalPage}">
+			다음
+		</c:if>
+	</p>
+	
 	<div class="footer wrap">
 		<div class="left">
 			<div class="title">beans:beans</div>
