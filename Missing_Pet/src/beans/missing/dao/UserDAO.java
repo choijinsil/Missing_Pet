@@ -107,10 +107,10 @@ public class UserDAO {
 		return null;
 	}
 
-	public List<UserVO> search_user(String id_name) {// 관리자가 회원정보 검색 (아이디, 이름)
-
+	public List<UserVO> search_user(String id) {// 관리자가 회원정보 검색 (아이디, 이름)
+		System.out.println("id>>"+id);
 		try {
-			return smc.queryForList("user.search_user", id_name);
+			return smc.queryForList("user.search_user", "%"+id+"%");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

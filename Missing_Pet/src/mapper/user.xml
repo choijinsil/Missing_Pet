@@ -56,8 +56,8 @@
 	<!-- 회원 아이디, 이름 검색 -->
 	<select id="search_user" resultClass="user">
 		select * from user_info 
-		where id like '%'||#id_name#||'%'
-		or name like '%'||#id_name#||'%'
+		where id like #id#
+		or name like #id#
 	</select>
 
 </sqlMap>

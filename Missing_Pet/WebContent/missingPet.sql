@@ -81,11 +81,10 @@ drop sequence wit_seq;
 insert into user_info (id, name, pass, email, tel, address, black) 
 values ('admin', '관리자', '1234', '.', '.', '.', 'N');
 
-
 ------------------------------------------------- 샘플 데이터 --------------------------------------------
 -- user_info
 insert into user_info (id, name, pass, email, tel, address, black) 
-values ('apple10', '사과', '1234', 'orange@gmail.com', '010-1234-4567', '서울시 마포구 공덕동 롯데캐슬프레지던트', 'N');
+values ('apple20', 'app12', '1234', 'orange@gmail.com', '010-1234-4567', '서울시 마포구 공덕동 롯데캐슬프레지던트', 'N');
 
 
 
