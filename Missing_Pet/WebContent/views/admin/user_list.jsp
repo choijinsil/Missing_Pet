@@ -15,6 +15,7 @@
 <body>
 <h3><a href="main?action=main">[메인페이지]</a>&nbsp;<a href="admin?action=pet">[실종정보 목록]</a>&nbsp;<a href="admin?action=wit">[목격정보 목록]</a></h3>
 <hr>
+<input type="text" placeholder="검색할 이름이나 아이디를 입력해주세요" size="50px" name="search_user"> <input type="button" value="검색" onclick="location.href='admin?action=search_user'">
 <table border="1">
 	<tr style="background-color: skyblue">
 		<th>아이디</th>
@@ -31,7 +32,12 @@
 				<td>${user.email }</td>
 				<td>${user.tel }</td>
 				<td>${user.address }</td>
-				<td>${user.black }</td>
+				<c:if test="${user.black eq 'N'}">
+					<td>${user.black }</td>
+				</c:if>
+				<c:if test="${user.black eq 'Y'}">
+					<td><font color="red">${user.black }</font></td>
+				</c:if>
 			</tr>
 		</c:forEach>
       

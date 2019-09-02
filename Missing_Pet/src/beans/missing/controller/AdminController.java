@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import beans.missing.dao.AdminDAO;
+import beans.missing.dao.UserDAO;
 import beans.missing.vo.PetVO;
 import beans.missing.vo.UserVO;
 
@@ -25,6 +26,7 @@ public class AdminController extends HttpServlet{
 		
 		String action = request.getParameter("action");
 		AdminDAO dao = new AdminDAO();
+		UserDAO userDao= new UserDAO();
 		
 		if (action.equals("admin")) {// 회원 전체 목록 조회
 
@@ -117,6 +119,17 @@ public class AdminController extends HttpServlet{
 			request.setAttribute("totalPage", totalPage);// 전체페이지 수
 
 			RequestDispatcher rd = request.getRequestDispatcher("/views/admin/wit_list.jsp");
+			rd.forward(request, response);
+		}else if(action.equals("search_user")) { //회원 검색
+			System.out.println("회원검색 들어옴");
+			
+			userDao.search_user(request.getParameter("search_user"));//리턴이 List
+
+
+			List<UserVO> list = userDao.search_user(request.getParameter("search_user"));//리턴이 List
+			request.setAttribute("list", list);
+
+			RequestDispatcher rd = request.getRequestDispatcher("/views/admin/user_list.jsp");
 			rd.forward(request, response);
 		}
 	}//service
