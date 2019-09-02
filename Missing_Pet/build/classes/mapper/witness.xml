@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" " http://www.ibatis.com/dtd/sql-map-2.dtd" >
+<sqlMap namespace="wit">
+	<typeAlias alias="witVO" type="beans.missing.vo.WitnessVO"/>
+	
+	<insert id="witInfor_insert">
+		insert into wit_info(wit_no,missing_pic,find_date,wit_place,wit_comment,id,missing_no) values(wit_seq.nextval,#missing_pic#,#find_date#,#wit_place#,#wit_comment#,#id#,#missing_no#)
+		
+	</insert>
+
+	<select id="printData" resultClass="witVO">
+		select wit_no,missing_pic,find_date,wit_place,wit_comment,id,missing_no
+		from (select wit_no,missing_pic,find_date,wit_place,wit_comment,id,missing_no from wit_info order by wit_no desc)
+		where rownum=1 
+	</select>
+
+</sqlMap>

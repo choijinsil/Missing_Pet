@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd" >
+<sqlMap namespace="pet">
+	<typeAlias alias="pet" type="beans.missing.vo.PetVO"/>
+	
+	<!--MYPAGE.JSP 회원MISSING정보조회 -->
+	<select id="select_mymissing" resultClass="pet">
+		select * from missing_info
+		where id=#id#
+	</select>
+
+	<!--MYPAGE.JSP 회원MISSING귀가처리 -->
+	<update id="update_mymissing">
+		update missing_info
+		set complete_date=sysdate
+		where missing_no = #missing_no#
+	</update>
+
+	<insert id="register">
+		insert into missing_info (missing_no,id,missing_pic,write_date,missing_place,missing_date,missing_type,missing_comment,tip)
+		values (missing_seq.nextval,#id#,#missing_pic#,SYSDATE,#missing_place#,#missing_date#,#missing_type#,#missing_comment#,#tip#)
+	</insert>
+	
+	<select id="select_pet" resultClass="pet">
+		select missing_no, m.id, missing_pic, missing_place, missing_date, missing_type, missing_comment, tip, u.tel
+		from missing_info m full outer join user_info u
+		on m.id = u.id
+		where missing_no = #missing_no#
+	</select>
+</sqlMap>
