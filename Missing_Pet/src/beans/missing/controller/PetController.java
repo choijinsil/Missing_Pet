@@ -156,7 +156,7 @@ public class PetController extends HttpServlet {
 			
 			
 			PetVO vo = new PetVO(missing_no, null, nameList, null, place, to, type, comment, tip, null, null);
-			System.out.println("vo>>>"+vo);
+			System.out.println("vo>>>"+vo	);
 			 if(dao.update_pet_info(vo)) { 
 				 response.sendRedirect("/main?action=main");
 			 }else { 
