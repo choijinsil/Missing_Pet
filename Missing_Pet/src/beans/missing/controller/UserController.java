@@ -35,6 +35,21 @@ public class UserController extends HttpServlet {
 		if (action == null || action.equals("main")) {// main.jsp 접속
 			
 			request.getSession().setAttribute("list", dao.pet_list());
+			String pageNo = request.getParameter("page");
+			int page;
+			
+			if(pageNo == null) {
+				page = 1;
+			}else {
+				page = Integer.parseInt(pageNo);
+			}
+			
+			request.getSession().setAttribute("list", dao.pet_list(page));
+			request.getSession().setAttribute("page", page);//현재 페이지 수
+			
+			//총 페이지 구하기
+			int totalPage = dao.total_page();
+			request.getSession().setAttribute("totalPage", totalPage);//전체 페이지 수
 			
 			RequestDispatcher rd = request.getRequestDispatcher("/views/common/main.jsp");
 			rd.forward(request, response);

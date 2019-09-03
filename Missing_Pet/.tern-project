@@ -9,12 +9,15 @@
     },
     "jscs": {
       
+<<<<<<< HEAD
     },
     "browser-extension": {
       
     },
     "jquery-extension": {
       
+=======
+>>>>>>> f64f81e9560c1a3c9c1c12b28dd465639f289b8e
     }
   },
   "libs": [

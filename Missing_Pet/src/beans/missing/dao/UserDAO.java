@@ -1,6 +1,7 @@
 package beans.missing.dao;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import java.util.Map;
@@ -20,6 +21,7 @@ public class UserDAO {
 		smc = MySqlMapClient.getSqlMapInstance();
 	}
 	
+
 	public boolean insert_user(UserVO vo) { // 회원 가입
 		try {
 			smc.insert("user.insert_user", vo);
@@ -98,6 +100,18 @@ public class UserDAO {
 			return  list;
 		}
 
+	// main.jsp에 실종 동물 리스트 select
+	public List<PetVO> pet_list(int page) {
+
+		List<PetVO> list = null;
+		try {
+			list = smc.queryForList("user.pet_list", 6 * page - 6, 6);
+			return list;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
 
 	// 블랙리트스 조회하기
 	public String select_black_user(String id) {
@@ -109,4 +123,39 @@ public class UserDAO {
 		return null;
 	}
 
+	public List<UserVO> search_user(String id) {// 관리자가 회원정보 검색 (아이디, 이름)
+		System.out.println("id>>"+id);
+		try {
+			return smc.queryForList("user.search_user", "%"+id+"%");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	//main페이지 페이징
+	public List<PetVO> select_page(Map<String, Integer> map) {
+
+		List<PetVO> list = new ArrayList<>();
+		try {
+			list = (ArrayList) smc.queryForList("user.select_page", map);// map(start:1,end:10) mpa(11,20) ...
+			return list;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	// main페이지 페이징
+	public Integer total_page() {
+		
+		int totalPage = 0;
+		try {
+			totalPage = (Integer) smc.queryForObject("user.total_page");
+			return totalPage;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return totalPage;
+	}
 }

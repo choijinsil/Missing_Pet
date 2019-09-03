@@ -7,9 +7,24 @@
 	<!-- main페이지에 pet list select -->
 	<select id="pet_list" resultClass="pet">
 		select missing_no, missing_pic, missing_place, missing_date from missing_info
+		order by missing_no desc
 	</select>
 
 
+	
+	<!-- main페이지 paging -->
+	<select id="select_page" resultClass="pet">
+		select missing_no, missing_pic, missing_place, missing_date
+		from (select missing_no, missing_pic, missing_place, missing_date, rownum rn
+		from (select missing_no, missing_pic, missing_place, missing_date 
+		from missing_info order by missing_no desc))
+		where rn between #start# and #end#
+	</select>
+	
+	<select id="total_page" resultClass="int">
+		select ceil(count(missing_no)/6) from missing_info
+	</select>
+	
 	<!-- 회원가입 -->
 	<insert id="insert_user">
 		insert into user_info
@@ -38,6 +53,13 @@
 	<!-- 블랙리스트 회원정보 조회 -->
 	<select id="select_black_user" resultClass="String">
 		select black from user_info where id=#id# 
+	</select>
+	
+	<!-- 회원 아이디, 이름 검색 -->
+	<select id="search_user" resultClass="user">
+		select * from user_info 
+		where id like #id#
+		or name like #id#
 	</select>
 
 </sqlMap>
