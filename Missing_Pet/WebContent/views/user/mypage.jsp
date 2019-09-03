@@ -121,7 +121,7 @@ section:after {
 </head>
 <body>
 <h2>MYPAGE.JSP</h2>
-<a href="/main?action=main">메인으로 돌아가기</a>
+<a href="main">메인으로 돌아가기</a>
 <hr>
 <section>
 <nav>
@@ -175,8 +175,8 @@ section:after {
 </nav>
   
 <article>
-<h2>MY MISSING</h2>
-<a href="/main?action=user_mypost">게시글 관리하기</a>
+<h2>반려동물을 다시 만나셨나요?</h2>
+<a href="main?action=user_mypost">게시글 관리하기</a>
 <table style="width:100%"  border= "1px">
   <tr>
     <th>사진</th>
@@ -186,6 +186,7 @@ section:after {
     <th>품종</th>
     <th>귀가</th>
   </tr>
+	
 
    <c:forEach items="${missinglist }" var="missing">   
    <c:set var="pic" value="${missing.missing_pic}"></c:set>
@@ -210,3 +211,5 @@ section:after {
 
 </body>
 </html>
+
+

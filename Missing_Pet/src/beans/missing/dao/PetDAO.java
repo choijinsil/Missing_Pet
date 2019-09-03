@@ -36,4 +36,18 @@ public class PetDAO {
 		return null;
 	}
 	
+
+	//<!--MYPAGE.JSP 회원MISSING삭제 -->
+	public int delete_mymissing(int no) {
+		try {
+			return smc.delete("pet.delete_mymissing", no);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return 0;
+	}
+	
+
+	
 }

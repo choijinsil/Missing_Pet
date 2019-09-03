@@ -15,8 +15,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import beans.missing.dao.UserDAO;
+import beans.missing.dao.WitnessDAO;
 import beans.missing.vo.PetVO;
 import beans.missing.vo.UserVO;
+import beans.missing.vo.WitnessVO;
 
 @WebServlet("/main")
 public class UserController extends HttpServlet {
@@ -167,6 +169,21 @@ public class UserController extends HttpServlet {
 
 			// 리다이렉트이동
 			response.sendRedirect("/views/user/mypage.jsp");
+		}else if(action.equals("user_mypost")){
+			
+			// 내게시글 목록 
+			List<PetVO> missinglist = dao.select_mymissing(loginId);
+			request.setAttribute("missinglist", missinglist);
+			
+			// 내 목격 글 목록 조회 
+			WitnessDAO wdao = new WitnessDAO();
+			List<WitnessVO> witlist =wdao.select_mywit(loginId);
+			request.setAttribute("witlist", witlist);
+			System.out.println("witlist에대해 알아보자>>>"+witlist);
+			
+			// FORWARD이동
+			RequestDispatcher rd = request.getRequestDispatcher("/views/user/mypost.jsp");
+			rd.forward(request, response);
 		}
 	}
 }

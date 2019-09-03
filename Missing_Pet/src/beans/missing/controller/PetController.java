@@ -82,7 +82,39 @@ public class PetController extends HttpServlet{
 				response.sendRedirect("/main?action=main");
 			}
 			
+		}else if(action.equals("delete_mymissing")) {
+			
+			//MISSING_NO(공고번호) 얻기
+			int missing_no = Integer.parseInt(request.getParameter("missing_no"));
+			System.out.println("missing_no>>" + missing_no);
+			
+			// 특정MISSING_NO(공고번호) 삭제 
+			if(dao.delete_mymissing(missing_no)==1) {
+				System.out.println("삭제 완료");
+				// 리다이렉트이동
+				RequestDispatcher rd = request.getRequestDispatcher("/main?action=user_mypost");
+				rd.forward(request, response);
+			} else {
+				System.out.println("삭제 실패");
+			}
+			
+						
+			
+			
+		}else if(action.equals("register_upform")) {//등록 수정하기 
+			
+			// 정보가져오기  . 
+			String no = request.getParameter("missing_no");
+			System.out.println("no>>>>>>>>>>>>>"+no);
+			request.getSession().setAttribute("vo", dao.select_pet(Integer.parseInt(no)));				
+		
+			
+			//register_pet.jsp 로 이동 
+			RequestDispatcher rd = request.getRequestDispatcher("/views/user/register_upform.jsp");
+			rd.forward(request, response);	
 		}
+	
+
 	}
 	
 }
