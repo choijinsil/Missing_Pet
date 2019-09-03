@@ -34,7 +34,6 @@ public class UserController extends HttpServlet {
 		
 		if (action == null || action.equals("main")) {// main.jsp 접속
 			
-			request.getSession().setAttribute("list", dao.pet_list());
 			String pageNo = request.getParameter("page");
 			int page;
 			

@@ -42,7 +42,6 @@ public class AdminController extends HttpServlet{
 
 			List<UserVO> list = dao.select_user_info(page);
 			
-			int totalPage = dao.selectTotalPage();
 			int totalPage = dao.select_user_total_page();
 			
 			request.setAttribute("list", list);
@@ -92,7 +91,6 @@ public class AdminController extends HttpServlet{
 
 			List<PetVO> list = dao.select_pet_list(page);
 			
-			int totalPage = dao.selectTotalPage();
 			int totalPage = dao.select_wit_total_Page();
 			
 			request.setAttribute("list", list);
@@ -115,7 +113,6 @@ public class AdminController extends HttpServlet{
 
 			List<PetVO> list = dao.select_wit_list(page);
 			
-			int totalPage = dao.selectTotalPage();
 			int totalPage = dao.select_wit_total_Page();
 			
 			request.setAttribute("list", list);
@@ -133,6 +130,5 @@ public class AdminController extends HttpServlet{
 			rd.forward(request, response);
 		}
 	}//service
-	
 	
 }
