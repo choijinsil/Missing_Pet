@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -101,17 +103,66 @@ public class PetController extends HttpServlet {
 				System.out.println("삭제 실패");
 			}
 
-		} else if (action.equals("register_upform")) {// 등록 수정하기
+		} else if (action.equals("register_upform")) {// 실종동물 등록 수정 이동
 
-			// 정보가져오기 
+			// 정보가져오기
 			String no = request.getParameter("missing_no");
-			System.out.println("no>>>>>>>>>>>>>" + no);
-			System.out.println("pic>>>"+request.getParameter("missing_pic"));
 			request.getSession().setAttribute("vo", dao.select_pet(Integer.parseInt(no)));
 
 			// register_pet.jsp 로 이동
 			RequestDispatcher rd = request.getRequestDispatcher("/views/user/register_upform.jsp");
 			rd.forward(request, response);
+
+		} else if (action.equals("register_update")) { // 실종동물 등록 수정 하기
+
+			// register_pet.jsp에서 실종동물 등록시 map.jsp로 이동
+			String savePath = getServletContext().getRealPath("/") + "images";
+
+			int maxSize = 10 * 1024 * 1024;
+			MultipartRequest mreq = new MultipartRequest(request, savePath, maxSize, "UTF-8",
+					new DefaultFileRenamePolicy());
+
+			int missing_no=Integer.parseInt(mreq.getParameter("missing_no"));
+			String place = mreq.getParameter("missing_place");
+			String date = mreq.getParameter("missing_date");
+			String time = mreq.getParameter("missing_time");
+			SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+			Date to = null;
+			try {
+				to = fm.parse(date + " " + time);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+
+			String comment = mreq.getParameter("comment");
+			String tip = mreq.getParameter("tip");
+			String type = mreq.getParameter("type");
+
+			String saveFileName1 = mreq.getFilesystemName("missing_pic1"); 
+			String saveFileName2 = mreq.getFilesystemName("missing_pic2"); 
+			String saveFileName3= mreq.getFilesystemName("missing_pic3");
+			
+			String nameList = null;
+			if (saveFileName2 == null && saveFileName3 == null) {
+				nameList = "/images/" + saveFileName1;
+
+			} else if (saveFileName3 == null) {
+				nameList = "/images/" + saveFileName1 + "," + "/images/" + saveFileName2;
+
+			} else {
+				nameList = "/images/" + saveFileName1 + "," + "/images/" + saveFileName2 + "," + "/images/"
+						+ saveFileName3;
+			}
+			
+			
+			PetVO vo = new PetVO(missing_no, null, nameList, null, place, to, type, comment, tip, null, null);
+			System.out.println("vo>>>"+vo);
+			 if(dao.update_pet_info(vo)) { 
+				 response.sendRedirect("/main?action=main");
+			 }else { 
+				 System.out.println("업데이트 실패"); 
+			 }
+			 
 		}
 	}
 }
