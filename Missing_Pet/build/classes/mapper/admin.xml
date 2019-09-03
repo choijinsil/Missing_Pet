@@ -18,8 +18,6 @@
 		WHERE id = #id#
 	</select>
 	
-	<!-- pagingBean 조회 -->
-	<select id="selectTotalPage" resultClass="int">
 	<!-- pagingBean 조회(user) -->
 	<select id="select_user_total_page" resultClass="int">
       	SELECT ceil(count(*)/10) FROM user_info
