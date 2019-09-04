@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd" >
 <sqlMap namespace="admin">
+
 	<typeAlias alias="user" type="beans.missing.vo.UserVO"/>
 	<typeAlias alias="pet" type="beans.missing.vo.PetVO"/>
 	<typeAlias alias="wit" type="beans.missing.vo.WitnessVO"/>
@@ -18,6 +19,7 @@
 		WHERE id = #id#
 	</select>
 	
+
 	<!-- pagingBean 조회(user) -->
 	<select id="select_user_total_page" resultClass="int">
       	SELECT ceil(count(*)/10) FROM user_info
@@ -41,15 +43,18 @@
 		WHERE id = #id#
 	</delete>
 	
+	<!-- 분실 강아지 정보 -->
 	<!-- 분실 동물 정보 -->
 	<select id="select_pet_list" resultClass="pet">
 		SELECT missing_no,id,missing_pic,write_date,missing_place,missing_date,tip,complete_date
 		FROM missing_info
 	</select>
 	
+	<!-- 신고 강아지 정보 -->
 	<!-- 신고 동물 정보 -->
 	<select id="select_wit_list" resultClass="wit">
 		SELECT wit_no,missing_pic,find_date,wit_place,wit_comment
 		FROM wit_info
 	</select>
+	
 </sqlMap>

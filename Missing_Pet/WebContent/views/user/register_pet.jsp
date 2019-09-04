@@ -8,8 +8,10 @@
 <style>
 	h3{text-align: center;}
 	hr{width: 380px;}
+	table{margin: auto; border: 1px solid #BDBDBD; border-radius: 5px; margin-top: 40px;}
 	table{margin: auto; border: 1px solid #BDBDBD; border-radius: 5px; margin-top: 10px;}
 	th{text-align: left;}
+	td{padding: 20px;}
 	td{padding: 10px;}
 	div{text-align: center;}
 	
@@ -80,10 +82,12 @@
 		  
 		$("#imgInput1").change(function(){
 		   readURL1(this);
+		   $('#file2').show();
 		});
 		
 		$("#imgInput2").change(function(){
 		   readURL2(this);
+		   $('#file3').show();
 		});
 		
 		$("#imgInput3").change(function(){
@@ -114,56 +118,56 @@
 			</div> 
 			
 			<form action="pet?action=register" method="post" enctype="multipart/form-data">
-			<table>
-				<tbody>
-					<tr>
-						<td>*</td>
-						<th>사진</th>
-						<td><input type="file" id="imgInput1" name="missing_pic1"></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-						<td><input type='file' id="imgInput2" name="missing_pic2"/></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-						<td><input type='file' id="imgInput3" name="missing_pic3"/></td>
-					</tr>
-					<tr>
-						<td>*</td>
-						<th>실종날짜</th>
-						<td><input type="date" name="missing_date"></td>
-					</tr>
-					<tr>
-						<td>*</td>
-						<th>실종시간</th>
-						<td><input type="time" name="missing_time"></td>
-					</tr>
-					<tr>
-						<td></td>
-						<th>코멘트</th>
-						<td>
-							<textarea rows="10" cols="30" name="comment"></textarea>
-						</td>
-					</tr>
-					<tr>
-						<td>*</td>
-						<th>보상금</th>
-						<td><input name="tip"></td>
-					</tr>
-					<tr>
-						<td>*</td>
-						<th>종류</th>
-						<td colspan="3">
-							<input type="checkbox" name="type" value="강아지"> 강아지
-							<input type="checkbox" name="type" value="고양이"> 고양이
-							<input type="checkbox" name="type" value="기타"> 기타
-						</td>
-					</tr>
-				</tbody>
-			</table>
+				<table>
+					<tbody>
+						<tr>
+							<td>*</td>
+							<th>사진</th>
+							<td><input type="file" id="imgInput1" name="missing_pic1"></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+							<td><span id="file2" style="display: none"><input type='file' id="imgInput2" name="missing_pic2"/></span></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+							<td><span id="file3" style="display: none"><input type='file' id="imgInput3" name="missing_pic3"/></span></td>
+						</tr>
+						<tr>
+							<td>*</td>
+							<th>실종날짜</th>
+							<td><input type="date" name="missing_date"></td>
+						</tr>
+						<tr>
+							<td>*</td>
+							<th>실종시간</th>
+							<td><input type="time" name="missing_time"></td>
+						</tr>
+						<tr>
+							<td></td>
+							<th>코멘트</th>
+							<td>
+								<textarea rows="10" cols="30" name="comment"></textarea>
+							</td>
+						</tr>
+						<tr>
+							<td>*</td>
+							<th>보상금</th>
+							<td><input name="tip"></td>
+						</tr>
+						<tr>
+							<td>*</td>
+							<th>종류</th>
+							<td colspan="3">
+								<input type="checkbox" name="type" value="강아지"> 강아지
+								<input type="checkbox" name="type" value="고양이"> 고양이
+								<input type="checkbox" name="type" value="기타"> 기타
+							</td>
+						</tr>
+					</tbody>
+				</table>
 			<div>
 				<button type="submit" id="bt1">등록</button>
 				<button type="reset">reset</button>
@@ -264,6 +268,5 @@
 		    }    
 		}
 		</script>
-
 </body>
 </html>

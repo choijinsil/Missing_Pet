@@ -6,6 +6,57 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+	table.type11 {
+    border-collapse: separate;
+    border-spacing: 1px;
+    text-align: center;
+    line-height: 1.5;
+    margin: 20px 10px;
+}
+table.type11 th {
+    width: 155px;
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    color: #fff;
+    background:#ff6375 ;
+}
+table.type11 td {
+    width: 155px;
+    padding: 10px;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+    background: #eee;
+}
+
+.max-small {
+ width: 300px;
+ height: 300px;
+}
+
+
+.header {
+    background: #fff;
+    border-bottom: 1px solid #e0e0e0;
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    left: 0;
+    top: 0;
+}
+
+.logo {
+    display: block;
+    float: left;
+    padding: 20px 0 20px 30px;
+}
+
+.wrap{ width: 1000px; margin: 0 auto; overflow: hidden; margin-left: 0;
+} 
+
+
+</style>
 
 <script type="text/javascript">
 
@@ -46,22 +97,29 @@ function  wit_upform(wit_no){
 }
 
 </script>
-
+<br><br>
 <title>MYPAGE.JSP</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 </head>
 <body>
-<h2>게시글관리 MYPOST.JSP</h2>
-<a href="main?action=main">[메인]</a>
-<a href="main?action=user_mypage">[마이페이지]</a>
-<hr>
+
+<div class="header">
+<div class="wrap">
+
+<a class="logo" style="color: black">게시글관리 입니다.</a>
+<a href="main?action=main" class="logo" style="color: black;">[메인으로]</a> 
+<a href="main?action=user_mypage"  class="logo" style="color: black;">[마이페이지]</a>
+
+</div>
+</div>
+
 <section>
 <nav>
 
 <h2>MY MISSING</h2>
-<table style="width:100%"  border= "1px">
+<table style="width:100%"  class="type11">
   <tr>
     <th>사진</th>
     <th>공고번호</th> 
@@ -79,7 +137,7 @@ function  wit_upform(wit_no){
    <c:set var="pic" value="${missing.missing_pic}"></c:set>
    <c:set var="array" value="${fn:split(pic,',')}"></c:set>
   <tr>
-    <td><img src = "${array[0]}"></td>
+    <td><img src = "${array[0]}" class='max-small'></td>
     <td>${missing.missing_no}</td>
     <td><fmt:formatDate value="${missing.write_date}" pattern="yyyy.MM.dd HH:mm:ss" /></td>
     <td><fmt:formatDate value="${missing.missing_date}" pattern="yyyy.MM.dd HH:mm:ss" /></td>
@@ -87,7 +145,7 @@ function  wit_upform(wit_no){
     <td>${missing.missing_type}</td>
     <td>${missing.missing_comment}</td>
     <td>${missing.tip}</td>
-    <td>${missing.complete_date }</td>
+    <td><fmt:formatDate value="${missing.complete_date }" pattern="yyyy.MM.dd HH:mm:ss" /></td>
     <td>
     	<button onClick="register_upform('${missing.missing_no}')">수정</button><br>
         <button type="button" id="btn+${missing.missing_no}"
@@ -101,7 +159,7 @@ function  wit_upform(wit_no){
   
 <article>
 <h2>MY WIT</h2>
-<table style="width:100%"  border= "1px">
+<table style="width:100%"  class="type11">
   <tr>
     <th>사진</th>
     <th>게시번호</th> 
@@ -116,7 +174,7 @@ function  wit_upform(wit_no){
    <c:set var="pic" value="${wit.missing_pic}"></c:set>
    <c:set var="array" value="${fn:split(pic,',')}"></c:set>
   <tr>
-    <td><img src = "${array[0]}"></td>
+    <td><img src = "${array[0]}" class='max-small'></td>
     <td>${wit.wit_no}</td>
     <td>${wit.missing_no}</td>
     <td><fmt:formatDate value="${wit.find_date}" pattern="yyyy.MM.dd HH:mm:ss" /></td>

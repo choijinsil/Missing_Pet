@@ -27,6 +27,7 @@ public class AdminDAO {
 		return null;
 	}
 	
+
 	public Integer select_user_total_page() {
     	try {
 			return (Integer) smc.queryForObject("admin.select_user_total_page");
@@ -91,6 +92,7 @@ public class AdminDAO {
 	//신고 강아지 정보 조회
 	public List<PetVO> select_wit_list(int page) {
 		try {
+
 			return smc.queryForList("admin.select_wit_list", 10*(page-1), 10);
 		} catch (SQLException e) {
 			e.printStackTrace();

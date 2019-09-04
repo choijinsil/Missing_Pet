@@ -151,6 +151,7 @@ public class UserController extends HttpServlet {
 
 			// 회원정보,회원MISSING정보 SESSION객체 영역에 저장
 			UserVO userlist = dao.select_myinfo(loginId);
+			request.getSession().setAttribute("loginId", loginId);
 			
 			HttpSession session = request.getSession();
 			session.setAttribute("userlist", userlist);
@@ -159,6 +160,7 @@ public class UserController extends HttpServlet {
 			
 			// 리다이렉트이동
 			response.sendRedirect("/views/user/mypage.jsp");
+			response.sendRedirect("/main?action=user_mypage");
 
 		} else if (action.equals("update_mymissing")) {
 			/* 회원MISSING정보업데이트-> 인계날짜 SYSDATE입력 */
