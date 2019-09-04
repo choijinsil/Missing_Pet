@@ -149,6 +149,7 @@
 			</div>
 		</c:forEach>
 	</div>
+
 	
 	<br>
 	<p class="p2">

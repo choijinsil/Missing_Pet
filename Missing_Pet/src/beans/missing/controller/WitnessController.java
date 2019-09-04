@@ -126,7 +126,38 @@ public class WitnessController extends HttpServlet {
 				//response.sendRedirect("wit?filename1="+nameList.get(0)+"filename2="+nameList.get(1)+"filename3="+nameList.get(2));
 				
 				
-		}//action="fileUp" 
+		}else if(action.equals("delete_mywit")) {
+			
+			//wit_no(공고번호) 얻기
+			int wit_no = Integer.parseInt(request.getParameter("wit_no"));
+			System.out.println("wit_no>>" + wit_no);
+			
+			// 특정wit_no(공고번호) 삭제 
+			WitnessDAO wDAO=new WitnessDAO();
+			if(wDAO.delete_mywit(wit_no)==1) {
+				System.out.println("삭제 완료");
+				
+				// 리다이렉트이동
+				RequestDispatcher rd = request.getRequestDispatcher("/main?action=user_mypost");
+				rd.forward(request, response);
+			} else {
+				System.out.println("삭제 실패");
+			}
+			
+						
+			
+			
+		}else if(action.equals("wit_upform")) {//등록 수정하기 
+			
+			// 정보가져오기  . 
+			String no = request.getParameter("wit_no");
+			System.out.println("no>>>>>>>>>>>>>"+no);		
+		
+			
+			//register_pet.jsp 로 이동 
+			RequestDispatcher rd = request.getRequestDispatcher("/views/common/wit_pet.jsp");
+			rd.forward(request, response);	
+		}
 	
 	
 	}

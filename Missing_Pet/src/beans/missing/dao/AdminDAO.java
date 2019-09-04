@@ -20,21 +20,30 @@ public class AdminDAO {
 	
 	public List<UserVO> select_user_info(int page) {
 		try {
-			return smc.queryForList("admin.select_user_info", page*10-10, 10);
+			return smc.queryForList("admin.select_user_info", 10*(page-1), 10);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
 	
-	public Integer selectTotalPage() {
+	public Integer select_user_total_page() {
     	try {
-			return (Integer) smc.queryForObject("admin.selectTotalPage");
+			return (Integer) smc.queryForObject("admin.select_user_total_page");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return null;
     }
+	
+	public Integer select_wit_total_Page() {//실종동물 토탈페이지
+		try {
+			return (Integer) smc.queryForObject("admin.select_wit_total_Page");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 	
 	//업데이트 회원 정보 조회
 	public UserVO select_update_info(String id) {
@@ -72,7 +81,7 @@ public class AdminDAO {
 	//분실 강아지 정보 조회
 	public List<PetVO> select_pet_list(int page) {
 		try {
-			return smc.queryForList("admin.select_pet_list",page);
+			return smc.queryForList("admin.select_pet_list", 10*(page-1), 10);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -82,7 +91,7 @@ public class AdminDAO {
 	//신고 강아지 정보 조회
 	public List<PetVO> select_wit_list(int page) {
 		try {
-			return smc.queryForList("admin.select_wit_list",page);
+			return smc.queryForList("admin.select_wit_list", 10*(page-1), 10);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

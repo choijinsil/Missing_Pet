@@ -54,5 +54,12 @@
 	<select id="select_black_user" resultClass="String">
 		select black from user_info where id=#id# 
 	</select>
+	
+	<!-- 회원 아이디, 이름 검색 -->
+	<select id="search_user" resultClass="user">
+		select * from user_info 
+		where id like #id#
+		or name like #id#
+	</select>
 
 </sqlMap>

@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import beans.missing.dao.AdminDAO;
+import beans.missing.dao.UserDAO;
 import beans.missing.vo.PetVO;
 import beans.missing.vo.UserVO;
 
@@ -25,6 +26,7 @@ public class AdminController extends HttpServlet{
 		
 		String action = request.getParameter("action");
 		AdminDAO dao = new AdminDAO();
+		UserDAO userDao= new UserDAO();
 		
 		if (action.equals("admin")) {// 회원 전체 목록 조회
 
@@ -40,7 +42,7 @@ public class AdminController extends HttpServlet{
 
 			List<UserVO> list = dao.select_user_info(page);
 			
-			int totalPage = dao.selectTotalPage();
+			int totalPage = dao.select_user_total_page();
 			
 			request.setAttribute("list", list);
 			request.setAttribute("page", page);// 현재 페이지 (1페이지,2페이지)
@@ -77,6 +79,7 @@ public class AdminController extends HttpServlet{
 			
 		} else if (action.equals("pet")) {// 강아지 분실 리스트 조회
 			String pageNo = request.getParameter("page");
+			System.out.println("pageNo>>>"+pageNo);
 
 			// 페이지 요청 파라미터 얻어오기
 			int page;
@@ -88,7 +91,7 @@ public class AdminController extends HttpServlet{
 
 			List<PetVO> list = dao.select_pet_list(page);
 			
-			int totalPage = dao.selectTotalPage();
+			int totalPage = dao.select_wit_total_Page();
 			
 			request.setAttribute("list", list);
 			request.setAttribute("page", page);// 현재 페이지 (1페이지,2페이지)
@@ -110,7 +113,7 @@ public class AdminController extends HttpServlet{
 
 			List<PetVO> list = dao.select_wit_list(page);
 			
-			int totalPage = dao.selectTotalPage();
+			int totalPage = dao.select_wit_total_Page();
 			
 			request.setAttribute("list", list);
 			request.setAttribute("page", page);// 현재 페이지 (1페이지,2페이지)
@@ -118,8 +121,14 @@ public class AdminController extends HttpServlet{
 
 			RequestDispatcher rd = request.getRequestDispatcher("/views/admin/wit_list.jsp");
 			rd.forward(request, response);
+		}else if(action.equals("search_user")) { //회원 검색
+
+			List<UserVO> list = userDao.search_user(request.getParameter("search_id"));//리턴이 List
+			request.setAttribute("list", list);
+
+			RequestDispatcher rd = request.getRequestDispatcher("/views/admin/user_list.jsp");
+			rd.forward(request, response);
 		}
 	}//service
-	
 	
 }
