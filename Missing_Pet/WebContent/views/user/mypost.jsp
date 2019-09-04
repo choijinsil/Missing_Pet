@@ -145,7 +145,7 @@ function  wit_upform(wit_no){
     <td>${missing.missing_type}</td>
     <td>${missing.missing_comment}</td>
     <td>${missing.tip}</td>
-    <td>${missing.complete_date }</td>
+    <td><fmt:formatDate value="${missing.complete_date }" pattern="yyyy.MM.dd HH:mm:ss" /></td>
     <td>
     	<button onClick="register_upform('${missing.missing_no}')">수정</button><br>
         <button type="button" id="btn+${missing.missing_no}"

@@ -124,23 +124,19 @@
    <c:set var="array" value="${fn:split(pic,',')}"></c:set>
    
 		<div class="images">
-		   <img class="image" id="image1" src="#" alt="your image"/>
-		   <img class="image" id="image2" src="#" alt="your image"/>
-		   <img class="image" id="image3" src="#" alt="your image"/>
-		
+		 
 		   <img class="image" id="image1" src="${array[0]}" alt="your image"/>
 		   <img class="image" id="image2" src="${array[1]}" alt="your image"/>
 		   <img class="image" id="image3" src="${array[2]}" alt="your image"/>
 		</div> 
 	
-	<form action="pet?action=register" method="post" enctype="multipart/form-data">
+	
 	<form action="pet?action=register_update" method="post" enctype="multipart/form-data">
 	<table>
 		<tbody>
 			<tr>
 				<td>*</td>
 				<th>사진</th>
-				<td><input type="file" id="imgInput1" name="missing_pic1"></td>
 				<td><input type="file" id="imgInput1" name="missing_pic1" ></td>
 			</tr>
 			<tr>
