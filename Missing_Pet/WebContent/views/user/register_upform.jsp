@@ -109,7 +109,21 @@
 			$('#ect').prop('checked', true);
 		}
 		
+		$('#pic_cancle1').click(function(){
+			$('#image1').attr('src','');
+		});
+		
+		$('#pic_cancle2').click(function(){
+			$('#image2').attr('src','');
+		});
+		
+		$('#pic_cancle3').click(function(){
+			$('#image3').attr('src','');
+		});
+		
 	});
+	
+	
 	
 </script>
 
@@ -119,19 +133,21 @@
 	<div id="map" class="map"></div>
 	<div class="list">
 	<h3>실종동물등록</h3><hr style="background-color: yellow">
+	<h3>실종동물수정</h3><hrs style="background-color: yellow">
 	
    <c:set var="pic" value="${vo.missing_pic}"></c:set>
    <c:set var="array" value="${fn:split(pic,',')}"></c:set>
    
 		<div class="images">
-		 
-		   <img class="image" id="image1" src="${array[0]}" alt="your image"/>
+
+		   <img class="image" id="image1" src="${array[0]}" alt="your image" />
 		   <img class="image" id="image2" src="${array[1]}" alt="your image"/>
 		   <img class="image" id="image3" src="${array[2]}" alt="your image"/>
 		</div> 
-	
-	
 	<form action="pet?action=register_update" method="post" enctype="multipart/form-data">
+	    <input type="hidden" name="hidden_pic1" value="${array[0]}">
+	    <input type="hidden" name="hidden_pic2" value="${array[1]}">
+	    <input type="hidden" name="hidden_pic3" value="${array[2]}">
 	<table>
 		<tbody>
 			<tr>
@@ -199,9 +215,8 @@
 		<button type="reset">reset</button>
 		<a href="main?action=user_mypost">[내게시글목록으로]</a>
 	</div>
-	</form>
-	<input type="hidden" name="missing_no" value="${vo.missing_no }">
 	
+	<input type="hidden" name="missing_no" value="${vo.missing_no }">
 	</form>
 	</div>
 	</div>
