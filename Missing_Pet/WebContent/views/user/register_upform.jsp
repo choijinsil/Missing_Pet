@@ -14,10 +14,16 @@
 	h3{text-align: center;}
 	hr{width: 380px;}
 	table{margin: auto; border: 1px solid #BDBDBD; border-radius: 5px; margin-top: 40px;}
+	table{margin: auto; border: 1px solid #BDBDBD; border-radius: 5px; margin-top: 10px;}
 	th{text-align: left;}
 	td{padding: 20px;}
+	td{padding: 10px;}
 	div{text-align: center; margin-top: 20px;}
 	
+	
+	.wrap{ display:inline; width: 100%; height: 500px; border-radius: 5px;}
+	.list{ display:inline; float:left; width:40%; margin-top: 30px;}
+	.map{ display:inline; float:left; width: 60%; height: 700px; margin-top: 30px;}
 	.image{width: 100px; height: 100px;}
 </style>
 <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
@@ -102,12 +108,16 @@
 		}else{
 			$('#ect').prop('checked', true);
 		}
+		
 	});
 	
 </script>
 
 </head>
 <body>
+	<div class="wrap">
+	<div id="map" class="map"></div>
+	<div class="list">
 	<h3>실종동물등록</h3><hr style="background-color: yellow">
 	
    <c:set var="pic" value="${vo.missing_pic}"></c:set>
@@ -117,15 +127,21 @@
 		   <img class="image" id="image1" src="#" alt="your image"/>
 		   <img class="image" id="image2" src="#" alt="your image"/>
 		   <img class="image" id="image3" src="#" alt="your image"/>
+		
+		   <img class="image" id="image1" src="${array[0]}" alt="your image"/>
+		   <img class="image" id="image2" src="${array[1]}" alt="your image"/>
+		   <img class="image" id="image3" src="${array[2]}" alt="your image"/>
 		</div> 
 	
 	<form action="pet?action=register" method="post" enctype="multipart/form-data">
+	<form action="pet?action=register_update" method="post" enctype="multipart/form-data">
 	<table>
 		<tbody>
 			<tr>
 				<td>*</td>
 				<th>사진</th>
 				<td><input type="file" id="imgInput1" name="missing_pic1"></td>
+				<td><input type="file" id="imgInput1" name="missing_pic1" ></td>
 			</tr>
 			<tr>
 				<td></td>
@@ -183,10 +199,25 @@
 	</table>
 	<div>
 		<button type="submit" id="bt1">등록</button>
+		<button type="submit" id="bt1">수정</button>
 		<button type="reset">reset</button>
 		<a href="main?action=user_mypost">[내게시글목록으로]</a>
 	</div>
 	</form>
+	<input type="hidden" name="missing_no" value="${vo.missing_no }">
 	
+	</form>
+	</div>
+	</div>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7b34394e2d8b59d2f6ccd7212da74043"></script>
+	<script>
+		var container = document.getElementById('map');
+		var options = {
+			center: new kakao.maps.LatLng(33.450701, 126.570667),
+			level: 3
+		};
+
+		var map = new kakao.maps.Map(container, options);
+	</script>
 </body>
 </html>

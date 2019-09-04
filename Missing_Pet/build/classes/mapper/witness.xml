@@ -13,5 +13,17 @@
 		from (select wit_no,missing_pic,find_date,wit_place,wit_comment,id,missing_no from wit_info order by wit_no desc)
 		where rownum=1 
 	</select>
+	
+	<!--회원의 모든 목격게시글 조회 -->
+	<select id="select_mywit" resultClass="witVO">
+		select * from wit_info
+		where id=#id#
+	</select>
+	
+	<!-- 목격신고 공고게시글 삭제 -->
+	<delete id="delete_mywit">
+	delete from wit_info
+	where wit_no=#wit_no#
+	</delete>
 
 </sqlMap>

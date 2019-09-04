@@ -15,6 +15,19 @@
 		set complete_date=sysdate
 		where missing_no = #missing_no#
 	</update>
+	
+	<!-- 실종정보 수정 -->
+	<update id="update_pet_info">
+		update missing_info
+		set 
+		missing_pic=#missing_pic#,
+		missing_place=#missing_place#,
+		missing_date=#missing_date#,
+		missing_type=#missing_type#,
+		missing_comment=#missing_comment#,
+		tip=#tip# 
+		where missing_no=#missing_no#
+	</update>
 
 	<insert id="register">
 		insert into missing_info (missing_no,id,missing_pic,write_date,missing_place,missing_date,missing_type,missing_comment,tip)
