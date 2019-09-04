@@ -105,7 +105,21 @@
 			$('#ect').prop('checked', true);
 		}
 		
+		$('#pic_cancle1').click(function(){
+			$('#image1').attr('src','');
+		});
+		
+		$('#pic_cancle2').click(function(){
+			$('#image2').attr('src','');
+		});
+		
+		$('#pic_cancle3').click(function(){
+			$('#image3').attr('src','');
+		});
+		
 	});
+	
+	
 	
 </script>
 
@@ -114,16 +128,18 @@
 	<div class="wrap">
 	<div id="map" class="map"></div>
 	<div class="list">
-	<h3>실종동물등록</h3><hr style="background-color: yellow">
+	<h3>실종동물수정</h3><hr style="background-color: yellow">
 	
    <c:set var="pic" value="${vo.missing_pic}"></c:set>
    <c:set var="array" value="${fn:split(pic,',')}"></c:set>
    
 		<div class="images">
-		
 		   <img class="image" id="image1" src="${array[0]}" alt="your image"/>
+		   <button id="pic_cancle1">x</button>
 		   <img class="image" id="image2" src="${array[1]}" alt="your image"/>
+		    <button id="pic_cancle2">x</button>
 		   <img class="image" id="image3" src="${array[2]}" alt="your image"/>
+		    <button id="pic_cancle3">x</button>
 		</div> 
 	
 	<form action="pet?action=register_update" method="post" enctype="multipart/form-data">
