@@ -7,9 +7,24 @@
 	<!-- main페이지에 pet list select -->
 	<select id="pet_list" resultClass="pet">
 		select missing_no, missing_pic, missing_place, missing_date from missing_info
+		order by missing_no desc
 	</select>
 
 
+	
+	<!-- main페이지 paging -->
+	<select id="select_page" resultClass="pet">
+		select missing_no, missing_pic, missing_place, missing_date
+		from (select missing_no, missing_pic, missing_place, missing_date, rownum rn
+		from (select missing_no, missing_pic, missing_place, missing_date 
+		from missing_info order by missing_no desc))
+		where rn between #start# and #end#
+	</select>
+	
+	<select id="total_page" resultClass="int">
+		select ceil(count(missing_no)/6) from missing_info
+	</select>
+	
 	<!-- 회원가입 -->
 	<insert id="insert_user">
 		insert into user_info
