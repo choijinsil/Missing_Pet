@@ -34,6 +34,7 @@
 		values (missing_seq.nextval,#id#,#missing_pic#,SYSDATE,#missing_place#,#missing_date#,#missing_type#,#missing_comment#,#tip#)
 	</insert>
 	
+	
 	<select id="select_pet" resultClass="pet">
 		select missing_no, m.id, missing_pic, missing_place, missing_date, missing_type, missing_comment, tip, u.tel
 		from missing_info m full outer join user_info u

@@ -1,5 +1,6 @@
 package beans.missing.dao;
 
+
 import java.sql.SQLException;
 import java.util.Map;
 
@@ -9,12 +10,15 @@ import beans.missing.vo.PetVO;
 import iba.MySqlMapClient;
 
 public class PetDAO {
+	
 
 	SqlMapClient smc;
+	
 
 	public PetDAO() {
 		smc = MySqlMapClient.getSqlMapInstance();
 	}
+	
 
 	public boolean register(PetVO vo) {
 		try {
@@ -25,8 +29,10 @@ public class PetDAO {
 		}
 		return false;
 	}
+	
 
 	public PetVO select_pet(int no) {
+		
 
 		try {
 			return (PetVO) smc.queryForObject("pet.select_pet", no);
@@ -35,7 +41,9 @@ public class PetDAO {
 		}
 		return null;
 	}
+	
 
+	//<!--MYPAGE.JSP 회원MISSING삭제 -->
 	// <!--MYPAGE.JSP 회원MISSING삭제 -->
 	public int delete_mymissing(int no) {
 		try {
@@ -46,7 +54,9 @@ public class PetDAO {
 		}
 		return 0;
 	}
+	
 
+	
 	// pet정보 수정
 	public boolean update_pet_info(PetVO vo) {
 		try {

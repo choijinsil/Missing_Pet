@@ -2,6 +2,7 @@ package beans.missing.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -34,8 +35,24 @@ public class WitnessController extends HttpServlet {
 		String action=request.getParameter("action");
 		
 		if(action ==null || action.equals("wit")) { //목격자 정보입력페이지 이동
-			RequestDispatcher rd = request.getRequestDispatcher("/views/common/wit_pet.jsp");
-			rd.forward(request, response);
+			
+			String loginId = (String) request.getSession().getAttribute("loginId");
+			String map_id = request.getParameter("map_id");
+			
+			if(loginId.equals(map_id)) {
+				
+				RequestDispatcher rd = request.getRequestDispatcher("/views/user/map.jsp");
+				rd.forward(request, response);			
+				
+				return;	
+			}
+				
+				RequestDispatcher rd = request.getRequestDispatcher("/views/common/wit_pet.jsp");
+				rd.forward(request, response);
+				
+			
+		
+			
 		} else if(action.equals("fileUp")) { //목격자 정보입력페이지-목격자가 정보입력완료 버튼을 눌렀을때
 		String realPath=request.getServletContext().getRealPath("/images/witimage");
 		  //String realPath="E:\\ldh\\workspace3\\DVDInfor\\WebContent\\images\\witimage";

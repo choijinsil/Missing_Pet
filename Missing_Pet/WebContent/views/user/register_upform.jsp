@@ -13,8 +13,10 @@
 <style>
 	h3{text-align: center;}
 	hr{width: 380px;}
+	table{margin: auto; border: 1px solid #BDBDBD; border-radius: 5px; margin-top: 40px;}
 	table{margin: auto; border: 1px solid #BDBDBD; border-radius: 5px; margin-top: 10px;}
 	th{text-align: left;}
+	td{padding: 20px;}
 	td{padding: 10px;}
 	div{text-align: center; margin-top: 20px;}
 	
@@ -26,6 +28,8 @@
 </style>
 <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script>
+
+
 
 	$(function(){
 		
@@ -134,6 +138,7 @@
    <c:set var="array" value="${fn:split(pic,',')}"></c:set>
    
 		<div class="images">
+
 		   <img class="image" id="image1" src="${array[0]}" alt="your image"/>
 		   <button id="pic_cancle1">x</button>
 		   <img class="image" id="image2" src="${array[1]}" alt="your image"/>
@@ -142,12 +147,14 @@
 		    <button id="pic_cancle3">x</button>
 		</div> 
 	
+	<form action="pet?action=register" method="post" enctype="multipart/form-data">
 	<form action="pet?action=register_update" method="post" enctype="multipart/form-data">
 	<table>
 		<tbody>
 			<tr>
 				<td>*</td>
 				<th>사진</th>
+				<td><input type="file" id="imgInput1" name="missing_pic1"></td>
 				<td><input type="file" id="imgInput1" name="missing_pic1" ></td>
 			</tr>
 			<tr>
@@ -195,6 +202,7 @@
 				<th>종류</th>
 				<td colspan="3">
 				
+				
 				<input type="checkbox" name="type" id="dog" value="강아지"> 강아지 
 				<input type="checkbox" name="type" id="cat" value="고양이"> 고양이
 				<input type="checkbox" name="type" id="ect" value="기타"> 기타 	
@@ -204,10 +212,12 @@
 		</tbody>
 	</table>
 	<div>
+		<button type="submit" id="bt1">등록</button>
 		<button type="submit" id="bt1">수정</button>
 		<button type="reset">reset</button>
 		<a href="main?action=user_mypost">[내게시글목록으로]</a>
 	</div>
+	</form>
 	<input type="hidden" name="missing_no" value="${vo.missing_no }">
 	
 	</form>
