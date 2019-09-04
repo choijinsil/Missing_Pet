@@ -150,7 +150,6 @@
 		</c:forEach>
 	</div>
 
-	
 	<br>
 	<p class="p2">
 		<c:if test="${page == 1}">
@@ -185,7 +184,7 @@
 			<a href="" target="_blank">블로그</a>
 			<a href="" target="_blank">페이스북</a>
 		</div>
-	</div>
+	</div>	
 	
 </body>
 </html>
