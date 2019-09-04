@@ -76,10 +76,12 @@
 		  
 		$("#imgInput1").change(function(){
 		   readURL1(this);
+		   $('#file2').show();
 		});
 		
 		$("#imgInput2").change(function(){
 		   readURL2(this);
+		   $('#file3').show();
 		});
 		
 		$("#imgInput3").change(function(){
@@ -109,12 +111,12 @@
 			<tr>
 				<td></td>
 				<td></td>
-				<td><input type='file' id="imgInput2" name="missing_pic2"/></td>
+				<td><span id="file2" style="display: none"><input type='file' id="imgInput2" name="missing_pic2"/></span></td>
 			</tr>
 			<tr>
 				<td></td>
 				<td></td>
-				<td><input type='file' id="imgInput3" name="missing_pic3"/></td>
+				<td><span id="file3" style="display: none"><input type='file' id="imgInput3" name="missing_pic3"/></span></td>
 			</tr>
 			<tr>
 				<td>*</td>

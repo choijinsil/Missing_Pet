@@ -139,22 +139,20 @@
    
 		<div class="images">
 
-		   <img class="image" id="image1" src="${array[0]}" alt="your image"/>
-		   <button id="pic_cancle1">x</button>
+		   <img class="image" id="image1" src="${array[0]}" alt="your image" />
 		   <img class="image" id="image2" src="${array[1]}" alt="your image"/>
-		    <button id="pic_cancle2">x</button>
 		   <img class="image" id="image3" src="${array[2]}" alt="your image"/>
-		    <button id="pic_cancle3">x</button>
 		</div> 
 	
-	<form action="pet?action=register" method="post" enctype="multipart/form-data">
 	<form action="pet?action=register_update" method="post" enctype="multipart/form-data">
+	    <input type="hidden" name="hidden_pic1" value="${array[0]}">
+	    <input type="hidden" name="hidden_pic2" value="${array[1]}">
+	    <input type="hidden" name="hidden_pic3" value="${array[2]}">
 	<table>
 		<tbody>
 			<tr>
 				<td>*</td>
 				<th>사진</th>
-				<td><input type="file" id="imgInput1" name="missing_pic1"></td>
 				<td><input type="file" id="imgInput1" name="missing_pic1" ></td>
 			</tr>
 			<tr>
@@ -217,9 +215,9 @@
 		<button type="reset">reset</button>
 		<a href="main?action=user_mypost">[내게시글목록으로]</a>
 	</div>
-	</form>
-	<input type="hidden" name="missing_no" value="${vo.missing_no }">
 	
+	<input type="hidden" name="missing_no" value="${vo.missing_no }">
+	체크:::${vo.missing_no }
 	</form>
 	</div>
 	</div>
