@@ -96,8 +96,7 @@ public class PetController extends HttpServlet {
 			int missing_no = Integer.parseInt(request.getParameter("missing_no"));
 			System.out.println("missing_no>>" + missing_no);
 			
-			// 특정MISSING_NO(공고번호) 삭제 
-			if(dao.delete_mymissing(missing_no)==1) {
+
 
 			// 특정MISSING_NO(공고번호) 삭제
 			if (dao.delete_mymissing(missing_no) == 1) {
@@ -108,7 +107,7 @@ public class PetController extends HttpServlet {
 				
 			} else {
 				System.out.println("삭제 실패");
-			}}
+			}
 
 		} else if (action.equals("register_upform")) {// 실종동물 등록 수정 이동
 
