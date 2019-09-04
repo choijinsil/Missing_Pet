@@ -18,11 +18,7 @@
 		FROM user_info
 		WHERE id = #id#
 	</select>
-	
-<<<<<<< HEAD
 
-=======
->>>>>>> e4fe2984081bf6bf77e2491ebbefd46d6c6fb4ca
 	<!-- pagingBean 조회(user) -->
 	<select id="select_user_total_page" resultClass="int">
       	SELECT ceil(count(*)/10) FROM user_info

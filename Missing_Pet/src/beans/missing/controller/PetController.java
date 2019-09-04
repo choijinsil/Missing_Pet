@@ -21,7 +21,6 @@ import beans.missing.dao.PetDAO;
 import beans.missing.vo.PetVO;
 
 @WebServlet("/pet")
-public class PetController extends HttpServlet{
 	 
 public class PetController extends HttpServlet {
 
@@ -29,18 +28,13 @@ public class PetController extends HttpServlet {
 	
 
 	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String action = request.getParameter("action");
-		
-		if (action.equals("registerForm")) {//main.jsp에서 동물등록 클릭시 register_pet.jsp로 이동
 
 		if (action.equals("registerForm")) {// main.jsp에서 동물등록 클릭시 register_pet.jsp로 이동
 			RequestDispatcher rd = request.getRequestDispatcher("/views/user/register_pet.jsp");
 			rd.forward(request, response);
-			
-		}else if(action.equals("map")) {//map.jsp로 이동
 			
 
 		} else if (action.equals("map")) {// map.jsp로 이동
@@ -52,19 +46,13 @@ public class PetController extends HttpServlet {
 
 			RequestDispatcher rd = request.getRequestDispatcher("/views/user/map.jsp");
 			rd.forward(request, response);
-			
-		}else if(action.equals("register")) {//register_pet.jsp에서 실종동물 등록시 map.jsp로 이동
-			String savePath = getServletContext().getRealPath("/") +"images";
-		
 
 		} else if (action.equals("register")) {// register_pet.jsp에서 실종동물 등록시 map.jsp로 이동
 			String savePath = getServletContext().getRealPath("/") + "images";
 
 			int maxSize = 10 * 1024 * 1024;
 			MultipartRequest mreq = new MultipartRequest(request, savePath, maxSize, "UTF-8", new DefaultFileRenamePolicy());
-			
-			MultipartRequest mreq = new MultipartRequest(request, savePath, maxSize, "UTF-8",
-					new DefaultFileRenamePolicy());
+		
 
 			String id = (String) request.getSession().getAttribute("loginId");
 			String place = mreq.getParameter("missing_place");
@@ -78,16 +66,7 @@ public class PetController extends HttpServlet {
 					e.printStackTrace();
 				}	
 			
-			SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd hh:mm");
-			Date to = null;
-			try {
-				to = fm.parse(date + " " + time);
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
-
 			String comment = mreq.getParameter("comment");
-			String tip = mreq.getParameter("tip");	
 			String tip = mreq.getParameter("tip");
 			String type = mreq.getParameter("type");
 			
@@ -106,31 +85,14 @@ public class PetController extends HttpServlet {
 				
 			}else {
 				nameList = "/images/" +saveFileName1 +"," +"/images/" +saveFileName2 +"," +"/images/" +saveFileName3;
-			if (saveFileName2 == null && saveFileName3 == null) {
-				nameList = "/images/" + saveFileName1;
-
-			} else if (saveFileName3 == null) {
-				nameList = "/images/" + saveFileName1 + "," + "/images/" + saveFileName2;
-
-			} else {
-				nameList = "/images/" + saveFileName1 + "," + "/images/" + saveFileName2 + "," + "/images/"
-						+ saveFileName3;
-			}
 			
-			PetVO vo = new PetVO(0,id,nameList,null,place,to,type,comment,tip,null,null);
-
-			if(dao.register(vo)) {
+		
 			PetVO vo = new PetVO(0, id, nameList, null, place, to, type, comment, tip, null, null);
 
 			if (dao.register(vo)) {
 				response.sendRedirect("/main?action=main");
-			}
 			
-		}else if(action.equals("delete_mymissing")) {
-			
-			//MISSING_NO(공고번호) 얻기
-
-		} else if (action.equals("delete_mymissing")) {
+		}}} else if (action.equals("delete_mymissing")) {
 
 			// MISSING_NO(공고번호) 얻기
 			int missing_no = Integer.parseInt(request.getParameter("missing_no"));
@@ -226,4 +188,4 @@ public class PetController extends HttpServlet {
 
 	}
 	
-}
+}}}}}
