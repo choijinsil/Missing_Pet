@@ -210,7 +210,6 @@
 		</tbody>
 	</table>
 	<div>
-		<button type="submit" id="bt1">등록</button>
 		<button type="submit" id="bt1">수정</button>
 		<button type="reset">reset</button>
 		<a href="main?action=user_mypost">[내게시글목록으로]</a>
