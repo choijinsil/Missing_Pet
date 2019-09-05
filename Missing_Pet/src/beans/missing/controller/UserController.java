@@ -91,8 +91,7 @@ public class UserController extends HttpServlet {
 				// id, pass가 맞고 블랙리스트값이 N인 경우 --로그인 성공!
 				System.out.println("로그인 성공!");
 				request.getSession().setAttribute("loginId", loginId);
-				RequestDispatcher rd = request.getRequestDispatcher("/views/common/main.jsp");
-				rd.forward(request, response);
+				response.sendRedirect("/main?action=main");
 
 			} else { // 로그인 실패시
 				
@@ -165,7 +164,6 @@ public class UserController extends HttpServlet {
 
 			// ID와 MISSING_NO(공고번호) 얻기
 			int missing_no = Integer.parseInt(request.getParameter("missing_no"));
-			
 
 			// 특정MISSING_NO(공고번호)의 인계날짜 SYSDATE입력
 			
