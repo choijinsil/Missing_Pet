@@ -2,7 +2,6 @@ package beans.missing.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -33,28 +32,32 @@ public class WitnessController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String action=request.getParameter("action");
+		System.out.println(action);
 		
 		if(action ==null || action.equals("wit")) { //목격자 정보입력페이지 이동
+			RequestDispatcher rd = request.getRequestDispatcher("/views/common/map.jsp");
+			rd.forward(request, response);
+		}else if(action.equals("witpet")) {
 			
-			String loginId = (String) request.getSession().getAttribute("loginId");
-			String map_id = request.getParameter("map_id");
+			System.out.println("목격지 마커의 주소값>>>"+request.getParameter("addr"));
 			
-			if(loginId.equals(map_id)) {
-				
-				RequestDispatcher rd = request.getRequestDispatcher("/views/user/map.jsp");
-				rd.forward(request, response);			
-				
-				return;	
-			}
-				
-				RequestDispatcher rd = request.getRequestDispatcher("/views/common/wit_pet.jsp");
-				rd.forward(request, response);
-				
-			
+			String lalt=request.getParameter("latLng");
+			 int idx=lalt.indexOf(",");
+			 int idx2=lalt.indexOf(")");
+			String la=lalt.substring(1, idx)+",";
+			String lt=lalt.substring(idx+2, idx2);
+				 System.out.println("경도값>>>"+la);
+				 System.out.println("경도값>>>"+lt);
+				 
 		
+			request.getSession().setAttribute("latLng",la+lt);
+			RequestDispatcher rd = request.getRequestDispatcher("/views/common/wit_pet.jsp");
+			rd.forward(request, response);
+			
+			
 			
 		} else if(action.equals("fileUp")) { //목격자 정보입력페이지-목격자가 정보입력완료 버튼을 눌렀을때
-		String realPath=request.getServletContext().getRealPath("/images/witimage");
+			String realPath=request.getServletContext().getRealPath("/images/witimage");
 		  //String realPath="E:\\ldh\\workspace3\\DVDInfor\\WebContent\\images\\witimage";
 		
 		  //src="/images/witimage/이미지명"
@@ -109,11 +112,14 @@ public class WitnessController extends HttpServlet {
 				 	System.out.println("저장되는경로>>>"+pathList);
 				}
 				}	
-					System.out.println("NameList>>"+nameList.get(0));
+					//System.out.println("NameList>>"+nameList.get(0));
 					count=0;
 					   //pathList, date,
 					
-					WitnessVO wVO=new WitnessVO(pathList,date,multipartRequest.getParameter("wit_place"),multipartRequest.getParameter("comment"),"KimJuWon", 3); 
+					//회원 id에 대한 정보를 받아와야함.
+					//user>map.jsp에서 클릭한 동물에대한 missing_no값을 받아와야함.
+					
+					WitnessVO wVO=new WitnessVO(pathList,date,(String)request.getSession().getAttribute("latLng"),multipartRequest.getParameter("comment"),"KimJuWon", 3); 
 					//목격자 테이블에 들어갈 정보를담은 vo ===>끝에 파라미터인자 2개는 map.jsp에저장되어있는 실종동물테이블에서 정보를 받아와야함
 					pathList="";
 					WitnessDAO wDAO=new WitnessDAO();
@@ -122,17 +128,20 @@ public class WitnessController extends HttpServlet {
 							if(wDAO.witInfor_insert(wVO)==null)
 								System.out.println("DB입력성공!!!");
 								WitnessVO firstVO=wDAO.printData();
+								System.out.println("발견장소>>>>"+request.getSession().getAttribute("addr"));
+								
+								
 								String missing_pic=firstVO.getMissing_pic();
 								
-								System.out.println("첫번째사진>>>>"+nameList.get(0));
-								System.out.println("두번째사진>>>>"+nameList.get(1));
+								//System.out.println("첫번째사진>>>>"+nameList.get(0));
+								
 								
 								
 								
 								request.getSession().setAttribute("nameList", nameList);
 								
 								request.getSession().setAttribute("witInfor_insert",firstVO);
-								response.sendRedirect("/views/common/map.jsp");//저장된 VO위치정보로 마커표시하기, ajax로 wit_info.jsp띄어서 등록한 목격정보 띄우기
+								response.sendRedirect("/views/common/main.jsp");//저장된 VO위치정보로 마커표시하기, ajax로 wit_info.jsp띄어서 등록한 목격정보 띄우기
 																			   // 목격마커 숨기기(실종마커 클릭했을때 missing_no와 일치하는 목격마커 띄우기)
 						} catch (SQLException e) {
 							
@@ -143,38 +152,7 @@ public class WitnessController extends HttpServlet {
 				//response.sendRedirect("wit?filename1="+nameList.get(0)+"filename2="+nameList.get(1)+"filename3="+nameList.get(2));
 				
 				
-		}else if(action.equals("delete_mywit")) {
-			
-			//wit_no(공고번호) 얻기
-			int wit_no = Integer.parseInt(request.getParameter("wit_no"));
-			System.out.println("wit_no>>" + wit_no);
-			
-			// 특정wit_no(공고번호) 삭제 
-			WitnessDAO wDAO=new WitnessDAO();
-			if(wDAO.delete_mywit(wit_no)==1) {
-				System.out.println("삭제 완료");
-				
-				// 리다이렉트이동
-				RequestDispatcher rd = request.getRequestDispatcher("/main?action=user_mypost");
-				rd.forward(request, response);
-			} else {
-				System.out.println("삭제 실패");
-			}
-			
-						
-			
-			
-		}else if(action.equals("wit_upform")) {//등록 수정하기 
-			
-			// 정보가져오기  . 
-			String no = request.getParameter("wit_no");
-			System.out.println("no>>>>>>>>>>>>>"+no);		
-		
-			
-			//register_pet.jsp 로 이동 
-			RequestDispatcher rd = request.getRequestDispatcher("/views/common/wit_pet.jsp");
-			rd.forward(request, response);	
-		}
+		}//action="fileUp" 
 	
 	
 	}
