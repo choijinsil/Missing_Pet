@@ -49,7 +49,7 @@ public class WitnessController extends HttpServlet {
 				 System.out.println("경도값>>>"+la);
 				 System.out.println("경도값>>>"+lt);
 				 
-		
+			request.getSession().setAttribute("addr", request.getParameter("addr"));
 			request.getSession().setAttribute("latLng",la+lt);
 			RequestDispatcher rd = request.getRequestDispatcher("/views/common/wit_pet.jsp");
 			rd.forward(request, response);
