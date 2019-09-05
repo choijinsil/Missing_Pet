@@ -92,7 +92,9 @@
 	</div>
 	<div class="main">
 		<a href="main?action=main">[메인으로]</a>
-		<a href="wit?action=wit&map_id=${vo.id}&missing_no=${vo.missing_no}&missing_place=${vo.missing_place}" >목격신고</a>
+		<c:if test="${loginId != null}">
+			<a href="wit?action=wit&map_id=${vo.id}&missing_no=${vo.missing_no}&missing_place=${vo.missing_place}" >목격신고</a>
+		</c:if>
 	</div>
 	<div class="section" id="section0">
 		<div class="swiper-container">
