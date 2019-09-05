@@ -157,7 +157,6 @@ public class UserController extends HttpServlet {
 			session.setAttribute("missinglist", missinglist);
 			
 			// 리다이렉트이동
-			response.sendRedirect("/views/user/mypage.jsp");
 			response.sendRedirect("/main?action=user_mypage");
 
 		} else if (action.equals("update_mymissing")) {
@@ -165,7 +164,6 @@ public class UserController extends HttpServlet {
 
 			// ID와 MISSING_NO(공고번호) 얻기
 			int missing_no = Integer.parseInt(request.getParameter("missing_no"));
-			
 
 			// 특정MISSING_NO(공고번호)의 인계날짜 SYSDATE입력
 			
