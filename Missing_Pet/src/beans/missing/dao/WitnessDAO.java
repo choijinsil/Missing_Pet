@@ -27,8 +27,6 @@ public class WitnessDAO {
 	}
 		
 	
-	
-	
 	public List<WitnessVO> select_mywit(String id) {
 		
 		try {
@@ -39,16 +37,14 @@ public class WitnessDAO {
 		return null;
 	}
 		
-
-	
-		public int delete_mywit(int no) {
-			try {
-				return smc.delete("wit.delete_mywit", no);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return 0;
+	public int delete_mywit(int no) {
+		try {
+			return smc.delete("wit.delete_mywit", no);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		return 0;
+	}	
 	
 }

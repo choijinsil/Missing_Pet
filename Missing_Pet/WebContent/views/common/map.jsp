@@ -50,7 +50,7 @@
 	 
  
  });
-	
+	 
 </script>
 
 <style type="text/css">
@@ -66,10 +66,8 @@
 	  if(request.getSession().getAttribute("witInfor_insert")!=null){
 			WitnessVO wit_vo=(WitnessVO)request.getSession().getAttribute("witInfor_insert");
 			 wit_place=wit_vo.getWit_place();
-			System.out.println(wit_place);
 	  }else if(request.getSession().getAttribute("witInfor_insert")==null){
-		     wit_place="서울특별시 중구 세종대로110"; // 마커로 목격장소찍기전에 마커가 표시될 default값
-	  		System.out.println(wit_place);
+		     //wit_place="서울특별시 중구 세종대로110"; // 마커로 목격장소찍기전에 마커가 표시될 default값
 	  }
 	%>
 
@@ -77,42 +75,57 @@
 
 	<div style="height:100%; width:100%; overflow: hidden; margin: 0; padding: 0;">
 	<div id="d1" style="width:100%; height:100%; float:left; background:red;"></div> 
+	
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=085fa0431ec49cf3b7687ee83350c1f2&libraries=services"></script>
 	<script>
-	function witInfo(latLng,detailAddr){	//목격동물 마커를 표시한곳의 위경도와 지번주소값을 넘기기
-		
-		var latLng=encodeURI(latLng);
-		var detailAddr=encodeURI(detailAddr);
-		 
-		alert(latLng);
-		alert(detailAddr);
-		
-		 document.location.href="/wit?action=witpet&addr="+detailAddr+"&latLng="+latLng;
+		function witInfo(latLng,detailAddr){	//목격동물 마커를 표시한곳의 위경도와 지번주소값을 넘기기
+			
+			var latLng=encodeURI(latLng);
+			var detailAddr=encodeURI(detailAddr);
+			 
+			alert(latLng);
+			alert(detailAddr);
+			
+			 document.location.href="/wit?action=witpet&addr="+detailAddr+"&latLng="+latLng;
 		}	
+		
+		var latitude = '${latitude}';//위도
+		var longitude = '${longitude}';//경도
+		
+		var mapContainer = document.getElementById('d1'), // 지도를 표시할 div 
+		    mapOption = { 
+		        center: new kakao.maps.LatLng(latitude, longitude), // 지도의 중심좌표
+		        level: 3 // 지도의 확대 레벨
+		    };
 	
-	var mapContainer = document.getElementById('d1'), // 지도를 표시할 div 
-	    mapOption = { 
-	        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-	        level: 3 // 지도의 확대 레벨
-	    };
+		// 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
+		var map = new kakao.maps.Map(mapContainer, mapOption); 
+		
+		// 마커가 표시될 위치입니다 
+		var markerPosition  = new kakao.maps.LatLng(latitude, longitude); 
 
-	// 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
-	var map = new kakao.maps.Map(mapContainer, mapOption); 
-	
+		// 마커를 생성합니다
+		var marker = new kakao.maps.Marker({
+		    position: markerPosition
+		});
 
-	var imageSrc='https://image.flaticon.com/icons/svg/616/616408.svg',
-		imageSize=new kakao.maps.Size(64,69),
-		imageOption={offset:new kakao.maps.Point(27,69)};
-	
-	var markerImage=new kakao.maps.MarkerImage(imageSrc,imageSize,imageOption);
+		// 마커가 지도 위에 표시되도록 설정합니다
+		marker.setMap(map);
 		
-		var wit_place='<%=wit_place %>';
-		var geocoder = new kakao.maps.services.Geocoder();
 		
-	if(wit_place !="서울특별시 중구 세종대로110"){//세션영역에 저장된 vo안에 getWit_place가 default값인 '서울특별시 중구 세종대로110'이 아니라면 즉, DB에 place데이터값이 들어가있으면
-		// 주소-좌표 변환 객체를 생성합니다(주소값을 가지고 위치를 검색해서 중심을이동해준다.)
+		var imageSrc='https://image.flaticon.com/icons/svg/616/616408.svg',
+			imageSize=new kakao.maps.Size(64,69),
+			imageOption={offset:new kakao.maps.Point(27,69)};
 		
-	
+		var markerImage=new kakao.maps.MarkerImage(imageSrc,imageSize,imageOption);
+			
+			var wit_place='<%=wit_place %>';
+			var geocoder = new kakao.maps.services.Geocoder();
+			
+		if(wit_place !="서울특별시 중구 세종대로110"){//세션영역에 저장된 vo안에 getWit_place가 default값인 '서울특별시 중구 세종대로110'이 아니라면 즉, DB에 place데이터값이 들어가있으면
+			// 주소-좌표 변환 객체를 생성합니다(주소값을 가지고 위치를 검색해서 중심을이동해준다.)
+			
+		
 		// 주소로 좌표를 검색합니다
 		geocoder.addressSearch('<%=wit_place%>', function(result, status) {
 			// 정상적으로 검색이 완료됐으면 

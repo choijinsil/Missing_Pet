@@ -147,9 +147,10 @@
 					<div class="context">${pet.missing_place}</div>
 				</div>
 			</div>
+			<input name="place" type="hidden" value="${pet.missing_place}">
 		</c:forEach>
 	</div>
-
+	
 	<br>
 	<p class="p2">
 		<c:if test="${page == 1}">
@@ -184,7 +185,10 @@
 			<a href="" target="_blank">블로그</a>
 			<a href="" target="_blank">페이스북</a>
 		</div>
+		<div id="centerAddr"></div>
 	</div>	
+	
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7b34394e2d8b59d2f6ccd7212da74043&libraries=services"></script>
 	
 </body>
 </html>

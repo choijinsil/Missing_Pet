@@ -42,7 +42,7 @@
 		
 		.img_wrap{ margin: 0 auto; overflow: hidden; }
 		.h1{ width: 100%; margin: 0 2.0% 20px;  float: left;}
-		.h1 .top{ height: 200px; background-size: cover; border-bottom: 3px solid #e0e0e0; cursor: pointer;}
+		.h1 .top{ height: 300px; background-size: cover; border-bottom: 3px solid #e0e0e0; cursor: pointer;}
 		
 		
 		
@@ -92,7 +92,7 @@
 	</div>
 	<div class="main">
 		<a href="main?action=main">[메인으로]</a>
-		<a href="wit?action=wit&map_id=${vo.id}" >목격신고</a>
+		<a href="wit?action=wit&map_id=${vo.id}&missing_no=${vo.missing_no}&missing_place=${vo.missing_place}" >목격신고</a>
 	</div>
 	<div class="section" id="section0">
 		<div class="swiper-container">

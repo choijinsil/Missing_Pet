@@ -87,19 +87,6 @@ public class UserDAO {
 		return false;
 	}
 	
-	//main.jsp에 실종 동물 리스트 select
-	public List<PetVO> pet_list () {
-			
-			List<PetVO> list = null;
-			try {
-				list = smc.queryForList("user.pet_list");
-				return list;
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			return  list;
-		}
-
 	// main.jsp에 실종 동물 리스트 select
 	public List<PetVO> pet_list(int page) {
 

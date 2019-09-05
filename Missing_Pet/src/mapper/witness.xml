@@ -2,6 +2,7 @@
 <!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" " http://www.ibatis.com/dtd/sql-map-2.dtd" >
 <sqlMap namespace="wit">
 	<typeAlias alias="witVO" type="beans.missing.vo.WitnessVO"/>
+	<typeAlias alias="petVO" type="beans.missing.vo.PetVO"/>
 	
 	<insert id="witInfor_insert">
 		insert into wit_info(wit_no,missing_pic,find_date,wit_place,wit_comment,id,missing_no) values(wit_seq.nextval,#missing_pic#,#find_date#,#wit_place#,#wit_comment#,#id#,#missing_no#)
@@ -25,5 +26,5 @@
 	delete from wit_info
 	where wit_no=#wit_no#
 	</delete>
-
+	
 </sqlMap>
