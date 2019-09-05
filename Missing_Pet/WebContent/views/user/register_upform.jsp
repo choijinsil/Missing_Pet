@@ -145,8 +145,7 @@
 		    </div>
 		</div>
 	<div class="list">
-	<h3>실종동물등록</h3><hr style="background-color: yellow">
-	<h3>실종동물수정</h3><hrs style="background-color: yellow">
+	<h3>실종동물수정</h3><hr style="background-color: yellow">
 	
    <c:set var="pic" value="${vo.missing_pic}"></c:set>
    <c:set var="array" value="${fn:split(pic,',')}"></c:set>

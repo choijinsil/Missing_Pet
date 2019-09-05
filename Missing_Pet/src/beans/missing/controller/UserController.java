@@ -158,7 +158,6 @@ public class UserController extends HttpServlet {
 			session.setAttribute("missinglist", missinglist);
 			
 			// 리다이렉트이동
-			response.sendRedirect("/views/user/mypage.jsp");
 			response.sendRedirect("/main?action=user_mypage");
 
 		} else if (action.equals("update_mymissing")) {
