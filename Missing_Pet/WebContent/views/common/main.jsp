@@ -98,7 +98,7 @@
 	<div class="header">
 		<div class="wrap">
 			<a href="http://incoding.kr" class="logo">
-				<img src="/images/incoding.png"/>
+				<img src="/images/cat.png"/>
 			</a>
 			<a href="pet?action=registerForm">동물등록</a>
 			<c:choose>

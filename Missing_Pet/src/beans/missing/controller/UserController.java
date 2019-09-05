@@ -91,8 +91,7 @@ public class UserController extends HttpServlet {
 				// id, pass가 맞고 블랙리스트값이 N인 경우 --로그인 성공!
 				System.out.println("로그인 성공!");
 				request.getSession().setAttribute("loginId", loginId);
-				RequestDispatcher rd = request.getRequestDispatcher("/views/common/main.jsp");
-				rd.forward(request, response);
+				response.sendRedirect("/main?action=main");
 
 			} else { // 로그인 실패시
 				
