@@ -8,15 +8,13 @@
 <style>
 	h3{text-align: center;}
 	hr{width: 380px;}
-	table{margin: auto; border: 1px solid #BDBDBD; border-radius: 5px; margin-top: 40px;}
 	table{margin: auto; border: 1px solid #BDBDBD; border-radius: 5px; margin-top: 10px;}
 	th{text-align: left;}
 	td{padding: 20px;}
-	td{padding: 10px;}
 	div{text-align: center;}
 	
-	.header{float: left; position: absolute;}
-	.wrap{ display:inline; width: 100%; height: 500px; border-radius: 5px;}
+	.header{position: absolute; float: left;}
+	.wrap{ display:inline; width: 100%; height: 500px; border-radius: 5px; position: absolute; margin-top: 20px;}
 	.list{ display:inline; float:left; width:40%; margin-top: 30px;}
 	.image{width: 100px; height: 100px;}
 	

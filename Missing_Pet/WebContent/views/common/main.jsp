@@ -18,9 +18,8 @@
 		background-image:url('/images/pet_background.jpg');
 		background-size:contain;
 		position: absolute;
-		width: 67%;
+		width: 100%;
 		height: 30%;
-		margin-top: 20px;
 		border-radius: 5px;
 		}
 		.dropmenu{ position: fixed; left: 50%; margin-left: -500px; top: 0; width: 64px; height: 64px; background: #ff6375; z-index: 10; }
@@ -108,7 +107,6 @@
 			<a href="http://incoding.kr" class="logo">
 				<img src="/images/cat.png"/>
 			</a>
-			<a href="pet?action=registerForm">동물등록</a>
 			<c:choose>
 				<c:when test="${loginId eq null }">
 					<a href="main?action=joinForm" class="logo" style="color: black;">회원 가입 </a> 
@@ -187,7 +185,6 @@
 				우린 누구인가? <br/><br/>
 				잃어버린 애완동물을 찾아주는 마법사 ~!<br/><br/>
 				<strong><font color="red">후원계좌: 010-8787-5536 기업  </font></strong><br/>
-				<div class="footerImg"></div>
 			</div>
 		</div>
 		<div class="right">
@@ -196,6 +193,7 @@
 		</div>
 		<div id="centerAddr"></div>
 	</div>	
+	<div class="footerImg"></div>
 	
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7b34394e2d8b59d2f6ccd7212da74043&libraries=services"></script>
 	
