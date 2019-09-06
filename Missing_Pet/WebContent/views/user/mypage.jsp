@@ -86,7 +86,7 @@ function real_check(clicked_name,complete_date){ //(missing_no,null여부)
 
 function delete_user(){
 	if(confirm("정말 탈퇴하시겠습니까?")){
-		location.href='main?action=withdraw'
+		location.href='main?action=withdraw';
 		return;
 	}
 }

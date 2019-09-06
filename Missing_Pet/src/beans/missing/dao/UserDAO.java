@@ -12,15 +12,12 @@ import beans.missing.vo.UserVO;
 import iba.MySqlMapClient;
 
 public class UserDAO {
-	
 
 	SqlMapClient smc;
-	
 
 	public UserDAO() {
 		smc = MySqlMapClient.getSqlMapInstance();
 	}
-	
 
 	public boolean insert_user(UserVO vo) { // 회원 가입
 		try {
@@ -86,7 +83,7 @@ public class UserDAO {
 		}
 		return false;
 	}
-	
+
 	// main.jsp에 실종 동물 리스트 select
 	public List<PetVO> pet_list(int page) {
 
@@ -111,16 +108,16 @@ public class UserDAO {
 	}
 
 	public List<UserVO> search_user(String id) {// 관리자가 회원정보 검색 (아이디, 이름)
-		System.out.println("id>>"+id);
+		System.out.println("id>>" + id);
 		try {
-			return smc.queryForList("user.search_user", "%"+id+"%");
+			return smc.queryForList("user.search_user", "%" + id + "%");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
-	
-	//main페이지 페이징
+
+	// main페이지 페이징
 	public List<PetVO> select_page(Map<String, Integer> map) {
 
 		List<PetVO> list = new ArrayList<>();
@@ -135,7 +132,7 @@ public class UserDAO {
 
 	// main페이지 페이징
 	public Integer total_page() {
-		
+
 		int totalPage = 0;
 		try {
 			totalPage = (Integer) smc.queryForObject("user.total_page");
@@ -144,5 +141,16 @@ public class UserDAO {
 			e.printStackTrace();
 		}
 		return totalPage;
+	}
+
+	public boolean withdraw_user(String id) {
+		try {
+			if (smc.delete("user.withdraw_user",id) > 0) {
+				return true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 }
