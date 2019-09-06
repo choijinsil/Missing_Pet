@@ -119,7 +119,7 @@
 		  <tr ><td>위치정보:</td><td colspan="1"><input type="text" name="wit_place" value="${sessionScope.addr }" size="50" readonly></td> </tr>
 		  <tr><td>코멘트:</td><td><textarea rows="5" cols="20" name="comment"></textarea></td> </tr>
 	      <tr><td style="border:none"><button  name="input" type="submit"  >등록하기</button>   </td></tr>
-	  		
+	  	<input type="hidden" name="missing_no" value="${param.missing_no}">	
 	  	</form>	   
   	 
   	</tbody>

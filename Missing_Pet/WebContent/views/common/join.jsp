@@ -144,8 +144,7 @@ body {
 			<td><input type="text" name="address" value="경기도 수원시 팔달구 우만동"></td>
 		</tr>
 	</table>
-	<input type="submit" value="가입">
-	<button>취소</button>
+
 	<button type="submit" >가입</button>
 	<br><br>
 	<button  type="button" onclick="location.href='main?action=loginForm'">취소</button>

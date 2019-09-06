@@ -83,7 +83,7 @@
 			var detailAddr=encodeURI(detailAddr);
 			 
 			
-			 document.location.href="/wit?action=witpet&addr="+detailAddr+"&latLng="+latLng;
+			 document.location.href="/wit?action=witpet&addr="+detailAddr+"&latLng="+latLng+"&missing_no="+'${missing_no}';
 		}
 	
 		var container = document.getElementById('map');

@@ -48,5 +48,8 @@
 	where missing_no=#missing_no#
 	</delete>
 	
-	
+	<select id="wit_makerList" resultClass="String">
+		select wit_place from wit_info
+		where missing_no = #missing_no#
+	</select>
 </sqlMap>

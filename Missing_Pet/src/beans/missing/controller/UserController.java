@@ -89,7 +89,6 @@ public class UserController extends HttpServlet {
 
 			if (dao.select_user(map)&& "N".equals(dao.select_black_user(loginId))) {
 				// id, pass가 맞고 블랙리스트값이 N인 경우 --로그인 성공!
-				System.out.println("로그인 성공!");
 				request.getSession().setAttribute("loginId", loginId);
 				response.sendRedirect("/main?action=main");
 
@@ -125,7 +124,6 @@ public class UserController extends HttpServlet {
 			request.setAttribute("userlist", userlist);
 			List<PetVO> missinglist = dao.select_mymissing(loginId);
 			request.setAttribute("missinglist", missinglist);
-				System.out.println("logId>>>>>"+loginId);
 			// FORWARD이동
 			RequestDispatcher rd = request.getRequestDispatcher("/views/user/mypage.jsp");
 			rd.forward(request, response);
@@ -192,7 +190,6 @@ public class UserController extends HttpServlet {
 			WitnessDAO wdao = new WitnessDAO();
 			List<WitnessVO> witlist =wdao.select_mywit(loginId);
 			request.setAttribute("witlist", witlist);
-			System.out.println("witlist에대해 알아보자>>>"+witlist);
 			
 			// FORWARD이동
 			RequestDispatcher rd = request.getRequestDispatcher("/views/user/mypost.jsp");

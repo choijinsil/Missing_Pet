@@ -116,7 +116,6 @@ body {
 
 </head>
 <body>
-	<h3>로그인 페이지</h3>
 <!-- 	<h3>로그인 페이지</h3>
 	<%-- <c:if test="${user ne 'ok' }"> --%>
 	<form action="main?action=login" method="post">
@@ -138,7 +137,7 @@ body {
 
 <div class="login-page">
   <div class="form">
-  
+  <h3>로그인 페이지</h3>
     <form class="login-form" action="main?action=login" method="post">
 		<input type="text" placeholder="아이디를 입력해주세요." name="id"><br/>
 		<input type="password" placeholder="비밀번호를 입력해주세요." name="pass"><br/>

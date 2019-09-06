@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -33,10 +34,15 @@ public class PetController extends HttpServlet {
 			rd.forward(request, response);
 			
 		} else if (action.equals("map")) {// map.jsp로 이동
-
+			
 			String no = request.getParameter("no");
+			List<String> latLng = dao.wit_markerList(Integer.parseInt(no));
+				for(int i=0;i<latLng.size();i++) { //List에 다음페이지에서 key값 "positions"와 "number"를 이용해서 value값을 찾게끔 저장
+					latLng.set(i, "{\"positions\":new kakao.maps.LatLng("+latLng.get(i)+"),\"number\":"+(i+1)+"}");
+				}
 			
 			request.getSession().setAttribute("vo", dao.select_pet(Integer.parseInt(no)));
+			request.getSession().setAttribute("latLng", latLng);
 
 			RequestDispatcher rd = request.getRequestDispatcher("/views/user/map.jsp");
 			rd.forward(request, response);
