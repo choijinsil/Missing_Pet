@@ -69,6 +69,8 @@ public class WitnessController extends HttpServlet {
 			
 			
 		} else if(action.equals("fileUp")) { //목격자 정보입력페이지-목격자가 정보입력완료 버튼을 눌렀을때
+			String id = (String) request.getSession().getAttribute("loginId");
+			
 			String realPath=request.getServletContext().getRealPath("/images/witimage");
 			  //String realPath="E:\\ldh\\workspace3\\DVDInfor\\WebContent\\images\\witimage";
 			
@@ -88,7 +90,9 @@ public class WitnessController extends HttpServlet {
 			int sizeLimit=15*1024*1024;
 			
 			MultipartRequest multipartRequest=new MultipartRequest(request, realPath,sizeLimit,"utf-8",new DefaultFileRenamePolicy());
-			  
+			
+			String no = multipartRequest.getParameter("missing_no");
+			
 			Enumeration fileNames=multipartRequest.getFileNames();
 				
 			String date_s=multipartRequest.getParameter("wit_date")+" "+multipartRequest.getParameter("wit_time");
@@ -103,7 +107,8 @@ public class WitnessController extends HttpServlet {
 				e.printStackTrace();
 			}
 			
-			nameList=new ArrayList<String>();			
+			nameList=new ArrayList<String>();
+			
 			while(fileNames.hasMoreElements()) {
 				
 			 	String file=(String)fileNames.nextElement();
@@ -113,29 +118,25 @@ public class WitnessController extends HttpServlet {
 			 	if(file_name!=null) {
 			 		nameList.add(count,"/images/witimage"+"/"+ file_name);//업로드한 파일을 읽어와서 List에 저장(최대 3개)
 			 		
-			 	
 					if(count<2) {	
 					 	pathList+=nameList.get(count)+",";	 
-					 	
 					 	count++;
-					}else if(count==2)
+					}else if(count==2) {
 						pathList+=nameList.get(count);
-					 	System.out.println("저장되는경로>>>"+pathList);
+					}
 			 	}
-			}	
-				//System.out.println("NameList>>"+nameList.get(0));
-				count=0;
-				   //pathList, date,
+			}//while	
+			
+			count=0;
 				
-				//회원 id에 대한 정보를 받아와야함.
-				//user>map.jsp에서 클릭한 동물에대한 missing_no값을 받아와야함.
+			//회원 id에 대한 정보를 받아와야함.
+			//user>map.jsp에서 클릭한 동물에대한 missing_no값을 받아와야함.
 				
-				WitnessVO wVO=new WitnessVO(pathList,date,(String)request.getSession().getAttribute("latLng"),multipartRequest.getParameter("comment"),"KimJuWon", 3); 
+				WitnessVO wVO=new WitnessVO(pathList,date,(String)request.getSession().getAttribute("latLng"),multipartRequest.getParameter("comment"),id,Integer.parseInt(no)); 
 				//목격자 테이블에 들어갈 정보를담은 vo ===>끝에 파라미터인자 2개는 map.jsp에저장되어있는 실종동물테이블에서 정보를 받아와야함
 				pathList="";
 				WitnessDAO wDAO=new WitnessDAO();
 					try {
-						
 						if(wDAO.witInfor_insert(wVO)==null)
 							System.out.println("DB입력성공!!!");
 							WitnessVO firstVO=wDAO.printData();
@@ -150,7 +151,6 @@ public class WitnessController extends HttpServlet {
 							response.sendRedirect("/main?action=main");//저장된 VO위치정보로 마커표시하기, ajax로 wit_info.jsp띄어서 등록한 목격정보 띄우기
 																		   // 목격마커 숨기기(실종마커 클릭했을때 missing_no와 일치하는 목격마커 띄우기)
 					} catch (SQLException e) {
-						
 						e.printStackTrace();
 					}						
 					

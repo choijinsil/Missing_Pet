@@ -1,3 +1,4 @@
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -82,6 +83,9 @@
     </script>
 		
 </head>
+	<%
+		List<String> latLng=(List<String>)request.getSession().getAttribute("latLng");
+	%>
 <body>
 	<c:set var="pic" value="${vo.missing_pic}"></c:set>
 	<c:set var="array" value="${fn:split(pic,',')}"></c:set>
@@ -194,17 +198,49 @@
       
       var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
       
+	  
+	  
 	  // 마커가 표시될 위치입니다 
-	  var markerPosition  = new kakao.maps.LatLng(latitude, longitude); 
-
+	  var markerPosition  = new kakao.maps.LatLng(latitude, longitude); //중심
+		
+	 //목격동물 마커표시
+	 var list= eval('<%=latLng%>');
+	  
+	 var imageSrc = "https://image.flaticon.com/icons/svg/1688/1688000.svg";
+	  
+	 for (var i = 0; i < list.length; i ++) {
+		    
+		    // 목격동물마커 이미지의 이미지 크기 입니다
+		    var imageSize = new kakao.maps.Size(24, 35); 
+		    
+		    // 목격동물마커 이미지를 생성합니다    
+		    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
+		    
+		    // 목격동물 마커를 생성합니다
+		    var marker = new kakao.maps.Marker({
+		        map: map, // 마커를 표시할 지도
+		        position: list[i].positions, // 마커를 표시할 위치
+		        title:list[i].number,
+		        image : markerImage // 마커 이미지 
+		    });
+		}
+	  	
+	  
+	 var imageSrc2="https://image.flaticon.com/icons/svg/25/25607.svg";
+	 var imageSize2=new kakao.maps.Size(30,35);
+	 var markerImage2=new kakao.maps.MarkerImage(imageSrc2,imageSize2);
+	  
 	  // 마커를 생성합니다
 	  var marker = new kakao.maps.Marker({
-	      position: markerPosition
+	      position: markerPosition,
+	      image:markerImage2
 	  });
+
 
 	  // 마커가 지도 위에 표시되도록 설정합니다
 	  marker.setMap(map);
       
+	  
    </script>
 </body>
 </html>

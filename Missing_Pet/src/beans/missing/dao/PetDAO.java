@@ -2,7 +2,7 @@ package beans.missing.dao;
 
 
 import java.sql.SQLException;
-import java.util.Map;
+import java.util.List;
 
 import com.ibatis.sqlmap.client.SqlMapClient;
 
@@ -67,6 +67,15 @@ public class PetDAO {
 			e.printStackTrace();
 		}
 		return false;
+	}
+	
+	public List<String> wit_markerList(int no){
+		try {
+			return smc.queryForList("pet.wit_makerList", no);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }
