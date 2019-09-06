@@ -14,6 +14,15 @@
 	
 	<!-- auto=가운데정렬, !important=reset.css에 적용된 색상때문에 사용, padding-top=padding값을 위에만 적용, .menu.selected=, wrap이 1000px로 한정되어있기때문에 header와 banner에 따로 padding값을 적용, background-size: cover=이미지가 중복되지않도록 늘림, box-sizing= border를 박스 안에다가 넣어줌, line-height=,-->
 	<style>
+		.footerImg{
+		background-image:url('/images/pet_background.jpg');
+		background-size:contain;
+		position: absolute;
+		width: 67%;
+		height: 30%;
+		margin-top: 20px;
+		border-radius: 5px;
+		}
 		.dropmenu{ position: fixed; left: 50%; margin-left: -500px; top: 0; width: 64px; height: 64px; background: #ff6375; z-index: 10; }
 		.dropmenu img{ transition:  all 0.3s ease; transform: rotate(0deg); }
 		.dropmenu:hover img{ transform: rotate(180deg); }
@@ -36,7 +45,7 @@
 		.banner2 .rect{ cursor: pointer; transition: all 300ms; position: relative; background: #fff; padding: 20px 20px 15px; overflow: hidden;}
 		.banner2 .title { transition: all 300ms; color: #777; font-size: 16px; float: left; width: 30%;}
 		.banner2 .graph { float: left; width: 40%; height: 5px; margin-top: 4px; background: #d4d5d6;}
-		.banner2 .graph .fill{ transition: all 300ms; width: 45%; height: 100%; background: #ff6375; }
+		.banner2 .graph .fill{ transition: all 300ms; width: 10%; height: 100%; background: #ff6375; }
 		.banner2 .text { color: #fff; transition: all 300ms; position: absolute; top: 35px; opacity: 0; right: 0; width: 30%; text-align: center;}
 		.banner2:hover .text{top:22px; opacity:1;}	
 		.banner2:hover .rect{background:#ff6375;}
@@ -79,7 +88,6 @@
 								.article .five{width:auto;float:none;margin:20px;}
 								.article .six{width:auto;float:none;margin:20px;}}
 		
-
 	</style>
 	<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 	<script>
@@ -117,7 +125,7 @@
 						<font color="green">${loginId }</font>님 환영합니다.~^^
 					</a>
 					<a href="pet?action=registerForm" class="logo" style="color: black;">동물등록</a>
-					<a href="main?action=user_mypage" class="logo" style="color: black;">마이페이지</a> <%-- 경로수정 --%>
+					<a href="main?action=user_mypage" class="logo" style="color: black;">마이페이지</a> 
 					<a href="main?action=loginOut" class="logo" style="color: black;">로그아웃</a>
 				</c:otherwise>
 			</c:choose>
@@ -127,7 +135,7 @@
 	<div class="banner2">
 		<div class="wrap">
 			<div class="rect">
-				<div class="title">실종동물찾기</div>
+				<div class="title">그동안 찾은 동물들</div>
 				<div class="graph">
 					<div class="fill"></div> 
 				</div>
@@ -178,7 +186,8 @@
 			<div class="context">
 				우린 누구인가? <br/><br/>
 				잃어버린 애완동물을 찾아주는 마법사 ~!<br/><br/>
-				<strong><font color="red">후원계좌: 010-8787-5536 기업  </font></strong>
+				<strong><font color="red">후원계좌: 010-8787-5536 기업  </font></strong><br/>
+				<div class="footerImg"></div>
 			</div>
 		</div>
 		<div class="right">
