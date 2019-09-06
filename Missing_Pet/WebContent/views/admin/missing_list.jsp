@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
+<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <style type="text/css">
+	
 	
 	table.type11 {
     border-collapse: separate;
@@ -30,6 +32,10 @@
     vertical-align: top;
     border-bottom: 1px solid #ccc;
     background: #eee;
+	}
+	.max-small {
+ 	width: 300px;
+ 	height: 300px;
 	}
 </style>
 
@@ -56,10 +62,12 @@
 		<th>인계날짜</th>
 	</tr>
 		<c:forEach items="${list}" var="pet">
+		<c:set var="pic" value="${pet.missing_pic}"></c:set>
+  		<c:set var="array" value="${fn:split(pic,',')}"></c:set>
 			<tr>
 				<td>${pet.missing_no }</td>
 				<td>${pet.id }</td>
-				<td>${pet.missing_pic }</td>
+				<td><img src="${array[0] }" class='max-small'></img></td>
 				<td>
 				<fmt:formatDate value="${pet.write_date }" pattern="yyyy-MM-dd HH:MM"/>
 				</td>

@@ -15,7 +15,7 @@
 	td{padding: 10px;}
 	div{text-align: center;}
 	
-	.header{float: left; position: absolute;}
+	.header{/* float: left; position: absolute; */}
 	.wrap{ display:inline; width: 100%; height: 500px; border-radius: 5px;}
 	.list{ display:inline; float:left; width:40%; margin-top: 30px;}
 	.image{width: 100px; height: 100px;}
@@ -100,8 +100,8 @@
 
 </head>
 <body>
-	<div class="wrap">
 	<a class="header" href="main?action=main">[홈페이지로]</a>
+	<div class="wrap">
 		<div class="map_wrap">
 		    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
 		    <div class="hAddr">
