@@ -6,14 +6,11 @@
 <head>
 <style type="text/css">
 	
-	table.type11 {
+	table{
     border-collapse: separate;
     border-spacing: 1px;
-    text-align: center;
-    
-    
     line-height: 1.5;
-    margin: 20px 10px;
+    margin: auto;
 	}
 	table.type11 th {
     width: 155px;
@@ -30,14 +27,12 @@
     border-bottom: 1px solid #ccc;
     background: #eee;
 	}
+	
+	body{text-align: center}
+    td,th{padding: 5px}
 </style>
 <meta charset="UTF-8">
 <title>회원리스트</title>
-<style type="text/css">
-     body{text-align: center}
-     table{margin: auto;}
-     td,th{padding: 5px}
-  </style>
   <script>
   	function search_user(){
   		var search_id = document.getElementById('search_id').value;
@@ -50,7 +45,7 @@
 <hr>
 <input type="text" placeholder="검색할 아이디나 이름을 입력해주세요" size="50px" id="search_id"> 
 <input type="button" value="검색" onclick="search_user()"> 
-<input type="button" value="전체 보기" onclick="location.href='admin?action=admin'">
+<input type="button" value="전체 보기" onclick="location.href='admin?action=admin'" style="margin-bottom: 30px;">
 <table border="1" class="type11" >
 	<tr >
 		<th>아이디</th>
