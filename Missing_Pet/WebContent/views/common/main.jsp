@@ -15,7 +15,7 @@
 	<!-- auto=가운데정렬, !important=reset.css에 적용된 색상때문에 사용, padding-top=padding값을 위에만 적용, .menu.selected=, wrap이 1000px로 한정되어있기때문에 header와 banner에 따로 padding값을 적용, background-size: cover=이미지가 중복되지않도록 늘림, box-sizing= border를 박스 안에다가 넣어줌, line-height=,-->
 	<style>
 		.footerImg{
-		background-image:url('/images/pet_background.jpg');
+		background-image:url('/images/pet_background1.jpg');
 		background-size:contain;
 		position: absolute;
 		width: 100%;

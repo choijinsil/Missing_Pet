@@ -1,10 +1,44 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
+<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
+<style type="text/css">
+	
+	
+	table.type11 {
+    border-collapse: separate;
+    border-spacing: 1px;
+    text-align: center;
+    
+    
+    line-height: 1.5;
+    margin: 20px 10px;
+	}
+	table.type11 th {
+    width: 155px;
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    color: #fff;
+    background:#ff6375 ;
+	}
+	table.type11 td {
+    width: 155px;
+    padding: 10px;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+    background: #eee;
+	}
+	.max-small {
+ 	width: 300px;
+ 	height: 300px;
+	}
+</style>
+
 <meta charset="UTF-8">
 <title>실종리스트</title>
 <style type="text/css">
@@ -16,7 +50,7 @@
 <body>
 <h3>분실 정보&nbsp;<a href="admin?action=admin">[관리자 페이지]</a>로 돌아가기</h3>
 <hr>
-<table border="1">
+<table border="1" class="type11">
 	<tr style="background-color: skyblue">
 		<th>공고번호</th>
 		<th>아이디</th>
@@ -28,10 +62,12 @@
 		<th>인계날짜</th>
 	</tr>
 		<c:forEach items="${list}" var="pet">
+		<c:set var="pic" value="${pet.missing_pic}"></c:set>
+  		<c:set var="array" value="${fn:split(pic,',')}"></c:set>
 			<tr>
 				<td>${pet.missing_no }</td>
 				<td>${pet.id }</td>
-				<td>${pet.missing_pic }</td>
+				<td><img src="${array[0] }" class='max-small'></img></td>
 				<td>
 				<fmt:formatDate value="${pet.write_date }" pattern="yyyy-MM-dd HH:MM"/>
 				</td>
