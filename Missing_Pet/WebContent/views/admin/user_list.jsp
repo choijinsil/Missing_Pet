@@ -4,6 +4,33 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style type="text/css">
+	
+	table.type11 {
+    border-collapse: separate;
+    border-spacing: 1px;
+    text-align: center;
+    
+    
+    line-height: 1.5;
+    margin: 20px 10px;
+	}
+	table.type11 th {
+    width: 155px;
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    color: #fff;
+    background:#ff6375 ;
+	}
+	table.type11 td {
+    width: 155px;
+    padding: 10px;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+    background: #eee;
+	}
+</style>
 <meta charset="UTF-8">
 <title>회원리스트</title>
 <style type="text/css">
@@ -24,8 +51,8 @@
 <input type="text" placeholder="검색할 아이디나 이름을 입력해주세요" size="50px" id="search_id"> 
 <input type="button" value="검색" onclick="search_user()"> 
 <input type="button" value="전체 보기" onclick="location.href='admin?action=admin'">
-<table border="1">
-	<tr style="background-color: skyblue">
+<table border="1" class="type11" >
+	<tr >
 		<th>아이디</th>
 		<th>이름</th>
 		<th>이메일</th>
@@ -40,7 +67,6 @@
 				<td>${user.email }</td>
 				<td>${user.tel }</td>
 				<td>${user.address }</td>
-				<td>${user.black }</td>
 				<c:if test="${user.black eq 'N'}">
 					<td>${user.black }</td>
 				</c:if>
@@ -49,8 +75,6 @@
 				</c:if>
 			</tr>
 		</c:forEach>
-      
-     
 </table>
 <br>
 	<c:if test="${page == 1}">

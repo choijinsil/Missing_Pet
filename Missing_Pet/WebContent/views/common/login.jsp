@@ -115,7 +115,6 @@ body {
 
 </head>
 <body>
-<<<<<<< HEAD
 
 <div class="login-page">
   <div class="form">
