@@ -92,6 +92,14 @@
 		   readURL3(this);
 		});
 			
+		$("#searchCenter").on("change", function() {
+			
+			var center=$("#searchCenter").val();
+			 changeCenter(center);
+			
+		});
+		
+		
  	});
 	
 </script>
@@ -105,6 +113,7 @@
 		    <div class="hAddr">
 		        <span class="title">지도중심기준 행정동 주소정보</span>
 		        <span id="centerAddr"></span>
+		        <span><input type="text" id="searchCenter" style="width:219px; text-align: center" placeholder="지도중심좌표 이동" ></span>
 		    </div>
 		</div>
 		<div class="list">
@@ -185,7 +194,22 @@
 
 		var map = new kakao.maps.Map(container, options);
 		
-	
+		// input창에 client가 주소를 입력시 change이벤트가 발생해서 text박스에 있는 주소값으로 지도중심으로 바꾸기
+		function changeCenter(center){
+			
+			var center=center;
+			var geocoder=new kakao.maps.services.Geocoder();
+			
+			//주소로 좌표를 검색
+			geocoder.addressSearch(center,function(result,status){
+				var coords=new kakao.maps.LatLng(result[0].y,result[0].x);
+			
+				map.setCenter(coords);
+			});
+			
+		}
+		
+		
 		// 지도에 클릭 이벤트를 등록합니다
 		// 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
 		kakao.maps.event.addListener(map, 'click', function(mouseEvent) {       
