@@ -150,7 +150,7 @@
 				<div class="top" style="background-image:url('${array[0]}');" onclick="move(${pet.missing_no})"></div>
 				<div class="bottom">
 					<div class="title"><fmt:formatDate value="${pet.missing_date}" pattern="yyyy-MM-dd hh:mm"/></div>
-					<div class="context">${pet.missing_place}</div>
+					<div class="context" name="address"></div>
 				</div>
 			</div>
 			<input name="place" type="hidden" value="${pet.missing_place}">
@@ -191,11 +191,38 @@
 			<a href="" target="_blank">블로그</a>
 			<a href="" target="_blank">페이스북</a>
 		</div>
-		<div id="centerAddr"></div>
+		 <div id="map"></div>
+		 <span id="centerAddr"></span>
 	</div>	
 	<div class="footerImg"></div>
 	
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7b34394e2d8b59d2f6ccd7212da74043&libraries=services"></script>
+	<script type="text/javascript">
+
+	// 주소-좌표 변환 객체를 생성합니다
+	var geocoder = new kakao.maps.services.Geocoder();
+		
+	var place = $('input[name=place]');
+		
+	var address = $('div[name=address]');
 	
+		for(var i=0; i<place.length; i++){
+			var lng = place[i].value.split(',')[0];
+			var lat = place[i].value.split(',')[1];
+			
+			var coord = new kakao.maps.LatLng(lng, lat);
+			
+			var callback = function(result, status) {
+			    if (status === kakao.maps.services.Status.OK) {
+			    	address.html(result[0].address.address_name);
+			    }
+			};
+			
+			geocoder.coord2Address(coord.getLng(), coord.getLat(), callback);
+		}
+
+	
+	
+	</script>
 </body>
 </html>
